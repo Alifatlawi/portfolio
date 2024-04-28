@@ -6,6 +6,7 @@ import { FaSwift } from "react-icons/fa";
 import atilimScheduleImg from "@/public/atilimScheduleImg.png"
 // import rmtdevImg from "@/public/rmtdev.png";
 // import wordanalyticsImg from "@/public/wordanalytics.png";
+import atilimCom from "@/public/atilimcom.png"
 
 export const links = [
   {
@@ -65,23 +66,16 @@ export const projectsData = [
     description:
       "Atilim Schedule is an iOS application that I developed using Swift, SwiftUI, and Xcode. This app is designed to assist students at Atilim University",
     tags: ["Swift", "SwiftUI", "Xcode", "iOS Development"],
-    imageUrl: atilimScheduleImg, // make sure to replace 'atilimScheduleImg' with the actual variable that holds your image
+    imageUrl: atilimScheduleImg, 
+    url: "https://apps.apple.com/tr/app/atilim-schedule/id6468368315"
+  },
+  {
+    title: "Atilim Community",
+    description: "Atilim Community is an iOS applicaiton that I developed, This app is designed to assist studesnts at Atilim Univsrsity so they can post and share their materials",
+    tags: ["Swift", "SwiftUI", "FireBase", "Dependency Injection", "MVVM"],
+    imageUrl: atilimCom,
+    url: "https://apps.apple.com/tr/app/atilimcommunity/id6499083769"
   }
-  // ,
-  // {
-  //   title: "rmtDev",
-  //   description:
-  //     "Job board for remote developer jobs. I was the front-end developer. It has features like filtering, sorting and pagination.",
-  //   tags: ["React", "TypeScript", "Next.js", "Tailwind", "Redux"],
-  //   imageUrl: rmtdevImg,
-  // },
-  // {
-  //   title: "Word Analytics",
-  //   description:
-  //     "A public web app for quick analytics on text. It shows word count, character count and social media post limits.",
-  //   tags: ["React", "Next.js", "SQL", "Tailwind", "Framer"],
-  //   imageUrl: wordanalyticsImg,
-  // },
 ] as const;
 
 export const skillsData = [
