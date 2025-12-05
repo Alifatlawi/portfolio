@@ -19,7 +19,7 @@ export default function Projects() {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.15
+        staggerChildren: 0.2
       }
     }
   };
@@ -37,11 +37,12 @@ export default function Projects() {
   };
 
   const cardVariants = {
-    hidden: { y: 60, opacity: 0, scale: 0.9 },
+    hidden: { y: 60, opacity: 0, scale: 0.9, rotateX: -10 },
     visible: {
       y: 0,
       opacity: 1,
       scale: 1,
+      rotateX: 0,
       transition: {
         duration: 0.8,
         ease: [0.6, -0.05, 0.01, 0.99]
@@ -50,10 +51,10 @@ export default function Projects() {
   };
 
   return (
-    <motion.section 
-      ref={ref} 
-      id="projects" 
-      className="scroll-mt-28 mb-28 relative"
+    <motion.section
+      ref={ref}
+      id="projects"
+      className="scroll-mt-28 mb-28 relative perspective-1000"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -68,7 +69,7 @@ export default function Projects() {
           className="text-center mb-16"
         >
           <SectionHeading>Featured Projects</SectionHeading>
-          <motion.p 
+          <motion.p
             className="text-gray-600 dark:text-gray-400 text-lg mt-4 max-w-2xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
@@ -77,7 +78,7 @@ export default function Projects() {
         </motion.div>
 
         {/* Projects Grid */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
           variants={containerVariants}
         >
@@ -85,17 +86,21 @@ export default function Projects() {
             <motion.div
               key={project.title}
               variants={cardVariants}
-              whileHover={{ scale: 1.02, y: -5 }}
-              transition={{ duration: 0.3 }}
-              className="group relative"
+              whileHover={{
+                scale: 1.02,
+                y: -10,
+                rotateX: 5,
+                transition: { duration: 0.3 }
+              }}
+              className="group relative preserve-3d"
             >
               {/* Enhanced Project Card */}
-              <div className="relative overflow-hidden rounded-3xl backdrop-blur-xl border border-white/10 shadow-2xl bg-white/5 dark:bg-white/5">
+              <div className="relative overflow-hidden rounded-3xl backdrop-blur-xl border border-white/10 shadow-2xl bg-white/5 dark:bg-white/5 transform-style-3d">
                 {/* Animated Background Gradient */}
                 <motion.div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"
                   style={{
-                    background: index % 2 === 0 
+                    background: index % 2 === 0
                       ? "linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(236, 72, 153, 0.1) 100%)"
                       : "linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 50%, rgba(139, 92, 246, 0.1) 100%)",
                     backgroundSize: "400% 400%",
@@ -130,7 +135,7 @@ export default function Projects() {
                   {/* Project Header */}
                   <div className="flex items-start justify-between mb-6">
                     <div className="flex-1">
-                      <motion.div 
+                      <motion.div
                         className="flex items-center gap-3 mb-2"
                         whileHover={{ x: 5 }}
                         transition={{ type: "spring", stiffness: 300 }}
@@ -155,7 +160,7 @@ export default function Projects() {
                           </motion.div>
                         )}
                       </motion.div>
-                      
+
                       <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
                         <div className="flex items-center gap-1">
                           <FaCalendarAlt className="text-xs" />
@@ -173,7 +178,7 @@ export default function Projects() {
                   </div>
 
                   {/* Project Description */}
-                  <motion.p 
+                  <motion.p
                     className="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-6"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -183,7 +188,7 @@ export default function Projects() {
                   </motion.p>
 
                   {/* Enhanced Technology Tags */}
-                  <motion.div 
+                  <motion.div
                     className="flex flex-wrap gap-2 mb-6"
                     variants={containerVariants}
                   >
@@ -192,7 +197,7 @@ export default function Projects() {
                         key={tag}
                         className="px-3 py-1.5 text-sm font-medium rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-700 dark:text-blue-300 border border-blue-500/20 hover:border-blue-500/40 transition-colors duration-300"
                         variants={itemVariants}
-                        whileHover={{ 
+                        whileHover={{
                           scale: 1.05,
                           boxShadow: "0 0 15px rgba(59, 130, 246, 0.3)",
                         }}
@@ -204,7 +209,7 @@ export default function Projects() {
                   </motion.div>
 
                   {/* Enhanced Action Buttons */}
-                  <motion.div 
+                  <motion.div
                     className="flex gap-4"
                     variants={containerVariants}
                   >
@@ -223,7 +228,7 @@ export default function Projects() {
                       >
                         <FaExternalLinkAlt className="text-sm" />
                       </motion.div>
-                      
+
                       {/* Button shimmer effect */}
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"
@@ -257,7 +262,7 @@ export default function Projects() {
                     ease: "easeInOut",
                   }}
                 />
-                
+
                 <motion.div
                   className="absolute bottom-4 left-4 w-12 h-12 rounded-full bg-gradient-to-br from-pink-400/20 to-orange-500/20 blur-xl opacity-50 group-hover:opacity-80"
                   animate={{

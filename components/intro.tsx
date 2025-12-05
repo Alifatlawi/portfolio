@@ -9,6 +9,7 @@ import { FaGithubSquare, FaCode, FaMagic, FaRocket, FaLaptopCode, FaMobile } fro
 import { HiSparkles } from "react-icons/hi";
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
+import { TypeAnimation } from 'react-type-animation';
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
@@ -16,7 +17,7 @@ export default function Intro() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const controls = useAnimation();
-  
+
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const rotateX = useTransform(mouseY, [-300, 300], [15, -15]);
@@ -38,7 +39,7 @@ export default function Intro() {
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('resize', handleResize);
     handleResize();
-    
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
@@ -107,7 +108,7 @@ export default function Intro() {
             ease: "easeInOut",
           }}
         />
-        
+
         <motion.div
           className="absolute -top-40 -right-60 w-96 h-96 bg-gradient-to-r from-emerald-400/10 via-cyan-400/10 to-blue-400/10 rounded-full blur-3xl"
           animate={{
@@ -123,14 +124,13 @@ export default function Intro() {
           }}
         />
 
-        {/* Floating Particles */}
-        {[...Array(8)].map((_, i) => (
+        {/* Interactive Floating Particles */}
+        {[...Array(12)].map((_, i) => (
           <motion.div
             key={i}
-            className={`absolute w-1 h-1 rounded-full ${
-              i % 3 === 0 ? 'bg-blue-500/20' : 
-              i % 3 === 1 ? 'bg-purple-500/20' : 'bg-pink-500/20'
-            }`}
+            className={`absolute w-1 h-1 rounded-full ${i % 3 === 0 ? 'bg-blue-500/30' :
+                i % 3 === 1 ? 'bg-purple-500/30' : 'bg-pink-500/30'
+              }`}
             style={{
               left: `${10 + (i * 8) % 80}%`,
               top: `${10 + (i * 12) % 80}%`,
@@ -140,6 +140,10 @@ export default function Intro() {
               x: [-10, 10, -10],
               opacity: [0.3, 0.8, 0.3],
               scale: [0.5, 1.2, 0.5],
+            }}
+            whileHover={{
+              scale: 3,
+              opacity: 1,
             }}
             transition={{
               duration: 3 + i * 0.5,
@@ -188,7 +192,7 @@ export default function Intro() {
       </div>
 
       {/* Enhanced Profile Section */}
-      <motion.div 
+      <motion.div
         className="flex items-center justify-center mb-10 relative"
         variants={itemVariants}
         style={{
@@ -243,7 +247,7 @@ export default function Intro() {
             {/* Multiple Glowing Backgrounds */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-3xl opacity-25 animate-pulse"></div>
             <div className="absolute inset-1 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full blur-2xl opacity-15 animate-pulse" style={{ animationDelay: '1s' }}></div>
-            
+
             <Image
               src="/IMG_8819.JPG"
               alt="Ali Al-Fatlawi portrait"
@@ -259,9 +263,9 @@ export default function Intro() {
           <motion.span
             className="absolute -bottom-3 -right-3 text-5xl sm:text-6xl filter drop-shadow-lg"
             initial={{ opacity: 0, scale: 0, rotate: -180 }}
-            animate={{ 
-              opacity: 1, 
-              scale: 1, 
+            animate={{
+              opacity: 1,
+              scale: 1,
               rotate: [0, 10, 0, -10, 0],
             }}
             transition={{
@@ -274,8 +278,8 @@ export default function Intro() {
                 delay: 2,
               }
             }}
-            whileHover={{ 
-              scale: 1.3, 
+            whileHover={{
+              scale: 1.3,
               rotate: 20,
               transition: { duration: 0.3 }
             }}
@@ -355,7 +359,7 @@ export default function Intro() {
         className="mb-10 px-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold !leading-[1.1] text-gray-900 dark:text-white"
         variants={itemVariants}
       >
-        <motion.span 
+        <motion.span
           className="inline-block"
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 300 }}
@@ -366,19 +370,33 @@ export default function Intro() {
           </span>
         </motion.span>
         <br className="hidden sm:block" />
-        <motion.span 
+        <motion.span
           className="mt-2 sm:mt-0 inline-block"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
           I'm a{" "}
-          <motion.span 
+          <motion.span
             className="relative inline-block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            Software Engineer
+            <TypeAnimation
+              sequence={[
+                'Software Engineer',
+                2000,
+                'Full Stack Developer',
+                2000,
+                'UI/UX Enthusiast',
+                2000,
+                'Problem Solver',
+                2000
+              ]}
+              wrapper="span"
+              speed={50}
+              repeat={Infinity}
+            />
             <motion.div
               className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-30"
               animate={{
@@ -394,7 +412,7 @@ export default function Intro() {
           </motion.span>
         </motion.span>
         <br />
-        <motion.span 
+        <motion.span
           className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-gray-600 dark:text-gray-400 mt-4 block leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -444,7 +462,7 @@ export default function Intro() {
             >
               Contact me here
             </motion.span>
-            
+
             <motion.div
               className="relative z-10"
               whileHover={{ x: 5, rotate: -45 }}
@@ -452,7 +470,7 @@ export default function Intro() {
             >
               <BsArrowRight className="text-xl" />
             </motion.div>
-            
+
             {/* Ripple Effect */}
             <motion.div
               className="absolute inset-0 bg-white/20 rounded-full scale-0"
@@ -485,7 +503,7 @@ export default function Intro() {
             >
               <BsLinkedin className="text-xl sm:text-2xl" />
             </motion.div>
-            
+
             {/* Enhanced Hover Background */}
             <motion.div
               className="absolute inset-0 bg-blue-600 rounded-full opacity-0 group-hover:opacity-20 transition-all duration-300"
@@ -513,7 +531,7 @@ export default function Intro() {
             >
               <FaGithubSquare className="text-xl sm:text-2xl" />
             </motion.div>
-            
+
             {/* Enhanced Hover Background */}
             <motion.div
               className="absolute inset-0 bg-gray-800 rounded-full opacity-0 group-hover:opacity-20 transition-all duration-300"

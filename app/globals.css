@@ -145,11 +145,26 @@ html.dark {
 
 /* Premium Glassmorphism */
 .glass {
-  @apply bg-white/80 backdrop-blur-xl border border-white/30 shadow-2xl;
+  @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
 
 .glass-dark {
-  @apply dark:bg-gray-900/80 dark:border-white/10;
+  @apply dark:bg-gray-900/60 dark:border-white/10 dark:shadow-2xl;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Frosted Glass Effect */
+.glass-frosted {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.dark .glass-frosted {
+  background: rgba(17, 24, 39, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Advanced Hover Animations */

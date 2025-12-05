@@ -38,7 +38,7 @@ export default function Header() {
     } else {
       document.body.style.overflow = 'unset';
     }
-    
+
     return () => {
       document.body.style.overflow = 'unset';
     };
@@ -49,10 +49,10 @@ export default function Header() {
       {/* Desktop Header */}
       <motion.div
         className={clsx(
-          "fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border backdrop-blur-xl transition-all duration-500 sm:top-6 sm:h-[3.25rem] sm:w-[48rem] sm:rounded-full hidden sm:block",
-          isScrolled 
-            ? "border-white/20 bg-white/70 dark:bg-gray-800/70 dark:border-white/15 shadow-2xl" 
-            : "border-white/30 bg-white/80 dark:bg-gray-800/80 dark:border-white/20 shadow-xl"
+          "fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border transition-all duration-500 sm:top-6 sm:h-[3.25rem] sm:w-[48rem] sm:rounded-full hidden sm:block",
+          isScrolled
+            ? "glass border-white/40 dark:bg-gray-800/70 dark:border-white/15"
+            : "border-white/30 bg-white/80 dark:bg-gray-800/80 dark:border-white/20 shadow-lg backdrop-blur-[0.5rem]"
         )}
         style={{
           opacity: headerOpacity,
@@ -116,7 +116,7 @@ export default function Header() {
               key={link.hash}
               initial={{ y: -100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ 
+              transition={{
                 delay: index * 0.08,
                 duration: 0.7,
                 ease: [0.6, -0.05, 0.01, 0.99]
@@ -138,7 +138,7 @@ export default function Header() {
               >
                 <motion.span
                   className="relative z-10"
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.05,
                   }}
                   transition={{ type: "spring", stiffness: 400, damping: 15 }}
@@ -150,7 +150,7 @@ export default function Header() {
                 {activeSection !== link.name && (
                   <motion.div
                     className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.05,
                     }}
                   />
@@ -178,7 +178,7 @@ export default function Header() {
                         background: "linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15))",
                       }}
                     />
-                    
+
                     {/* STATIC Highlight - No Animation */}
                     <div
                       className="absolute inset-0 rounded-full opacity-60"
@@ -207,10 +207,10 @@ export default function Header() {
       {/* Mobile Header */}
       <motion.div
         className={clsx(
-          "fixed top-0 left-0 right-0 h-16 border-b backdrop-blur-xl transition-all duration-300 sm:hidden z-50",
+          "fixed top-0 left-0 right-0 h-16 border-b transition-all duration-300 sm:hidden z-50",
           isScrolled || isMobileMenuOpen
-            ? "border-white/20 bg-white/80 dark:bg-gray-800/80 dark:border-white/15 shadow-lg" 
-            : "border-white/30 bg-white/90 dark:bg-gray-800/90 dark:border-white/20 shadow-md"
+            ? "glass border-white/40 dark:bg-gray-800/80 dark:border-white/15"
+            : "bg-white/90 backdrop-blur-lg border-white/30 dark:bg-gray-800/90 dark:border-white/20 shadow-sm"
         )}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -267,7 +267,7 @@ export default function Header() {
           "bg-white/95 dark:bg-gray-800/95 shadow-2xl"
         )}
         initial={{ height: 0, opacity: 0 }}
-        animate={{ 
+        animate={{
           height: isMobileMenuOpen ? "auto" : 0,
           opacity: isMobileMenuOpen ? 1 : 0
         }}
@@ -283,13 +283,13 @@ export default function Header() {
             <motion.div
               key={link.hash}
               initial={{ x: -20, opacity: 0 }}
-              animate={{ 
+              animate={{
                 x: isMobileMenuOpen ? 0 : -20,
                 opacity: isMobileMenuOpen ? 1 : 0
               }}
-              transition={{ 
+              transition={{
                 delay: isMobileMenuOpen ? index * 0.05 : 0,
-                duration: 0.3 
+                duration: 0.3
               }}
             >
               <Link
@@ -326,7 +326,7 @@ export default function Header() {
                         background: "linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1))",
                       }}
                     />
-                    
+
                     <motion.div
                       className="absolute right-4 w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full shadow-lg"
                       initial={{ scale: 0 }}
@@ -356,7 +356,7 @@ export default function Header() {
           ease: "easeInOut",
         }}
       />
-      
+
       <motion.div
         className="fixed top-6 right-1/5 w-12 h-12 bg-gradient-to-r from-pink-500/10 to-orange-500/10 rounded-full blur-xl -z-10"
         animate={{
