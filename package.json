@@ -35,5 +35,8 @@
   },
   "devDependencies": {
     "@types/react-vertical-timeline-component": "^3.3.3"
+  },
+  "engines": {
+    "node": ">=22.0.0 <25.0.0"
   }
 }
