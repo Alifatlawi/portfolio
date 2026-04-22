@@ -1,105 +1,31 @@
+"use client";
+
 import React from "react";
-import { FaPaperPlane } from "react-icons/fa";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
-import { motion } from "framer-motion";
 
 export default function SubmitBtn() {
   const { pending } = useFormStatus();
 
   return (
-    <motion.button
+    <button
       type="submit"
-      className="group relative overflow-hidden flex items-center justify-center gap-3 h-16 w-40 mx-auto btn-primary text-lg font-semibold shadow-glow hover:shadow-glow-lg disabled:opacity-60 disabled:cursor-not-allowed"
       disabled={pending}
-      whileHover={{ scale: pending ? 1 : 1.05 }}
-      whileTap={{ scale: pending ? 1 : 0.98 }}
-      transition={{ duration: 0.2 }}
+      className="group inline-flex items-center gap-3 bg-ink text-bg px-5 py-3 text-sm tracking-tight transition-colors duration-base ease-out-quart hover:bg-accent disabled:opacity-60 disabled:cursor-not-allowed"
     >
-      {/* Background Animation */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"
-        animate={{
-          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        style={{
-          backgroundSize: "200% 200%",
-        }}
-      />
-
-      {/* Shine Effect */}
-      <motion.div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100"
-        style={{
-          background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)",
-        }}
-        animate={{
-          x: ["-100%", "100%"],
-        }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
-
-      <div className="relative z-10 flex items-center gap-3">
-        {pending ? (
-          <>
-            <motion.div
-              className="flex gap-1"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div
-                className="w-2 h-2 bg-white rounded-full"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
-              />
-              <motion.div
-                className="w-2 h-2 bg-white rounded-full"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
-              />
-              <motion.div
-                className="w-2 h-2 bg-white rounded-full"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
-              />
-            </motion.div>
-            <span>Sending</span>
-          </>
-        ) : (
-          <>
-            <motion.span
-              initial={{ x: 0 }}
-              whileHover={{ x: -5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              Submit
-            </motion.span>
-            <motion.div
-              initial={{ x: 0, rotate: 0 }}
-              whileHover={{ x: 10, rotate: -45 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <FaPaperPlane className="text-lg opacity-90" />
-            </motion.div>
-          </>
-        )}
-      </div>
-
-      {/* Ripple Effect on Click */}
-      <motion.div
-        className="absolute inset-0 bg-white/20 rounded-full scale-0"
-        whileTap={{ scale: 2 }}
-        transition={{ duration: 0.6 }}
-      />
-    </motion.button>
+      <span>{pending ? "Sending…" : "Send message"}</span>
+      <svg
+        aria-hidden
+        viewBox="0 0 24 24"
+        width="14"
+        height="14"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="square"
+        className="transition-transform duration-base ease-out-quart group-hover:translate-x-0.5"
+      >
+        <path d="M5 12h14M13 5l7 7-7 7" />
+      </svg>
+    </button>
   );
 }

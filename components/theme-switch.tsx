@@ -1,18 +1,24 @@
 "use client";
 
-import { useTheme } from "@/context/theme-context";
 import React from "react";
-import { BsMoon, BsSun } from "react-icons/bs";
+import { useTheme } from "@/context/theme-context";
 
 export default function ThemeSwitch() {
   const { theme, toggleTheme } = useTheme();
+  const label = theme === "light" ? "Dark" : "Light";
 
   return (
     <button
-      className="fixed bottom-5 right-5 bg-white/90 backdrop-blur-sm w-[3rem] h-[3rem] border border-gray-200 shadow-lg rounded-full flex items-center justify-center hover:scale-[1.15] active:scale-105 transition-all duration-300 dark:bg-gray-950/90 dark:border-white/20 dark:shadow-white/10"
+      type="button"
       onClick={toggleTheme}
+      aria-label={`Switch to ${label.toLowerCase()} mode`}
+      className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 bg-raised label tabular text-ink-2 hover:text-ink px-3 py-2 ring-1 ring-rule hover:ring-rule-strong transition-colors duration-fast backdrop-blur-sm"
     >
-      {theme === "light" ? <BsSun className="text-gray-700" /> : <BsMoon className="text-white" />}
+      <span
+        aria-hidden
+        className="w-[6px] h-[6px] rounded-full bg-accent"
+      />
+      <span>{label}</span>
     </button>
   );
 }

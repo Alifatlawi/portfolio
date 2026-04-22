@@ -2,232 +2,83 @@
 
 import React from "react";
 import SectionHeading from "./section-heading";
-import { motion } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
-import { FaCode, FaRocket, FaLightbulb, FaHeart } from "react-icons/fa";
-import AnimatedBackground from "./animated-background";
+
+const stack = [
+  { group: "Mobile", items: ["Swift", "SwiftUI", "UIKit", "Flutter"] },
+  { group: "Web", items: ["TypeScript", "React", "Next.js", "Node.js"] },
+  { group: "Data", items: ["Firebase", "PostgreSQL", "MongoDB"] },
+  { group: "Practice", items: ["SOLID", "MVVM", "Testing", "Design reviews"] },
+];
 
 export default function About() {
   const { ref } = useSectionInView("About");
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99]
-      }
-    }
-  };
-
-  const iconVariants = {
-    hidden: { scale: 0, rotate: -180 },
-    visible: {
-      scale: 1,
-      rotate: 0,
-      transition: {
-        type: "spring",
-        stiffness: 200,
-        damping: 15
-      }
-    }
-  };
-
   return (
-    <motion.section
+    <section
       ref={ref}
-      className="mb-28 max-w-[45rem] text-center leading-8 sm:mb-40 scroll-mt-28 relative"
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.175 }}
       id="about"
+      aria-labelledby="about-heading"
+      className="page py-24 md:py-32 scroll-mt-24"
     >
-      {/* Enhanced Animated Background */}
-      <AnimatedBackground variant="cosmic" intensity="low" />
+      <SectionHeading index="02" eyebrow="Notes on the work">
+        <span id="about-heading">
+          A software engineer, in the workshop sense of the word.
+        </span>
+      </SectionHeading>
 
-      <motion.div
-        className="relative z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.8 }}
-      >
-        <SectionHeading>About me</SectionHeading>
+      <div className="grid grid-cols-12 gap-6 md:gap-10 rule-top pt-12 md:pt-16">
+        <div className="col-span-12 md:col-span-7">
+          <div className="measure space-y-6 text-lg leading-relaxed text-ink-2">
+            <p>
+              I&apos;m finishing a Software Engineering degree at Atılım
+              University in Ankara, and I&apos;ve spent the past three years
+              shipping real things to real people — mostly iOS apps in Swift
+              and SwiftUI, sometimes the server that keeps them honest, and
+              occasionally a web front-end when a project asks for one.
+            </p>
+            <p>
+              Two of those apps are on the App Store: a schedule planner used
+              daily by students across my university, and a community app
+              that knits small groups together through messaging and files.
+              Both taught me the same lesson — the interesting engineering
+              happens <em>after</em> the demo works.
+            </p>
+            <p>
+              I care about the small stuff: empty states, error copy, motion
+              that means something, the shape of an API. And I care about
+              shipping. I&apos;d rather publish a v1 that reads your
+              reviews than polish a v0 that never leaves TestFlight.
+            </p>
+          </div>
+        </div>
 
-        <motion.div 
-          className="relative"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-        >
-          {/* Enhanced Card with Animations */}
-          <motion.div
-            className="relative overflow-hidden rounded-3xl backdrop-blur-xl border border-white/10 shadow-2xl bg-white/80 dark:bg-gray-800/80 p-8 sm:p-12"
-            whileHover={{ scale: 1.02, y: -5 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Animated Background Gradient */}
-            <motion.div
-              className="absolute inset-0 opacity-30"
-              style={{
-                background: "linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(236, 72, 153, 0.1) 100%)",
-                backgroundSize: "400% 400%",
-              }}
-              animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
-
-            {/* Shimmer Effect */}
-            <motion.div
-              className="absolute inset-0 opacity-0 hover:opacity-100"
-              style={{
-                background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)",
-              }}
-              animate={{
-                x: ["-100%", "100%"],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
-
-            <div className="relative z-10">
-              <motion.p
-                className="mb-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
+        <aside className="col-span-12 md:col-span-4 md:col-start-9">
+          <p className="label tabular mb-6 text-ink-3">Working with</p>
+          <dl className="flex flex-col gap-5">
+            {stack.map((group) => (
+              <div
+                key={group.group}
+                className="grid grid-cols-[5rem_1fr] gap-x-4 gap-y-1 rule-top pt-4 first:border-t-0 first:pt-0"
               >
-                After pursuing my{" "}
-                <span className="font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Software Engineering degree
-                </span>{" "}
-                at Atilim University, I found my passion in creating innovative solutions through code. My journey has taken me through various technologies and frameworks, always driven by curiosity and the desire to build something meaningful.
-              </motion.p>
-
-              <motion.p
-                className="mb-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
-              >
-                My core stack includes{" "}
-                <span className="font-medium bg-gradient-to-r from-emerald-500 to-blue-500 bg-clip-text text-transparent">
-                  Swift, SwiftUI, React, Next.js, Node.js, and TypeScript
-                </span>
-                . I'm also proficient with{" "}
-                <span className="font-medium bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-                  Firebase, PostgreSQL, and MongoDB
-                </span>
-                . I am always looking to learn new technologies and stay updated with the latest trends in software development.
-              </motion.p>
-
-              <motion.p
-                className="mb-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.0, duration: 0.6 }}
-              >
-                When I'm not coding, I enjoy exploring new technologies, contributing to open-source projects, and{" "}
-                <span className="font-medium bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
-                  staying active in the developer community
-                </span>
-                . I believe in continuous learning and sharing knowledge with fellow developers.
-              </motion.p>
-            </div>
-
-            {/* Decorative Corner Elements */}
-            <motion.div
-              className="absolute top-4 right-4 w-16 h-16 rounded-full bg-gradient-to-br from-blue-400/20 to-purple-600/20 blur-xl opacity-50"
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-            
-            <motion.div
-              className="absolute bottom-4 left-4 w-12 h-12 rounded-full bg-gradient-to-br from-pink-400/20 to-orange-500/20 blur-xl opacity-50"
-              animate={{
-                scale: [1.2, 1, 1.2],
-                opacity: [0.4, 0.7, 0.4],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1,
-              }}
-            />
-          </motion.div>
-        </motion.div>
-      </motion.div>
-
-      {/* Skills Icons with Floating Animation */}
-      <motion.div 
-        className="flex justify-center items-center gap-8 mt-12"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        {[
-          { icon: FaCode, delay: 0, color: "text-blue-500" },
-          { icon: FaRocket, delay: 0.2, color: "text-purple-500" },
-          { icon: FaLightbulb, delay: 0.4, color: "text-yellow-500" },
-          { icon: FaHeart, delay: 0.6, color: "text-pink-500" }
-        ].map(({ icon: Icon, delay, color }, index) => (
-          <motion.div
-            key={index}
-            className={`glass p-4 rounded-full ${color} shadow-glow hover:shadow-glow-lg`}
-            variants={iconVariants}
-            custom={delay}
-            whileHover={{ 
-              scale: 1.2, 
-              rotate: 360,
-              boxShadow: "0 0 30px rgba(59, 130, 246, 0.6)"
-            }}
-            animate={{
-              y: [-5, 5, -5],
-            }}
-            transition={{
-              y: {
-                duration: 2 + index * 0.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              },
-              scale: { duration: 0.3 },
-              rotate: { duration: 0.6 }
-            }}
-          >
-            <Icon className="text-2xl" />
-          </motion.div>
-        ))}
-      </motion.div>
-    </motion.section>
+                <dt className="label tabular text-ink-3 pt-1">{group.group}</dt>
+                <dd className="text-ink-2 leading-relaxed">
+                  {group.items.map((item, i) => (
+                    <React.Fragment key={item}>
+                      <span>{item}</span>
+                      {i < group.items.length - 1 ? (
+                        <span className="mx-2 text-rule-strong" aria-hidden>
+                          ·
+                        </span>
+                      ) : null}
+                    </React.Fragment>
+                  ))}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </aside>
+      </div>
+    </section>
   );
 }

@@ -1,22 +1,26 @@
-"use client";
-
 import React from "react";
-import { motion } from "framer-motion";
 
 type SectionHeadingProps = {
+  index: string;
+  eyebrow?: string;
   children: React.ReactNode;
 };
 
-export default function SectionHeading({ children }: SectionHeadingProps) {
+export default function SectionHeading({
+  index,
+  eyebrow,
+  children,
+}: SectionHeadingProps) {
   return (
-    <motion.h2
-      className="text-3xl font-semibold capitalize mb-12 text-center sm:text-4xl text-gray-900 dark:text-white"
-      initial={{ opacity: 0, y: 100 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.175 }}
-      viewport={{ once: true }}
-    >
-      {children}
-    </motion.h2>
+    <header className="flex flex-col gap-2 mb-12 md:mb-16">
+      <div className="flex items-baseline gap-3 label tabular">
+        <span className="text-accent">{index}</span>
+        <span className="h-px w-6 bg-rule-strong self-center" aria-hidden />
+        {eyebrow ? <span>{eyebrow}</span> : null}
+      </div>
+      <h2 className="display-sm text-ink text-[clamp(1.75rem,3.2vw+0.5rem,3rem)]">
+        {children}
+      </h2>
+    </header>
   );
 }

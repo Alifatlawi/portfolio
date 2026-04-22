@@ -9,26 +9,11 @@ import atilimScheduleImg from "@/public/atilimScheduleImg.png"
 import atilimCom from "@/public/atilimcom.png"
 
 export const links = [
-  {
-    name: "Home",
-    hash: "#home",
-  },
-  {
-    name: "About",
-    hash: "#about",
-  },
-  {
-    name: "Projects",
-    hash: "#projects",
-  },
-  {
-    name: "Experience",
-    hash: "#experience",
-  },
-  {
-    name: "Contact",
-    hash: "#contact",
-  },
+  { name: "Home", hash: "#home" },
+  { name: "Projects", hash: "#projects" },
+  { name: "About", hash: "#about" },
+  { name: "Experience", hash: "#experience" },
+  { name: "Contact", hash: "#contact" },
 ] as const;
 
 export const experiencesData = [

@@ -1,21 +1,28 @@
-import Header from "@/components/header";
 import "./globals.css";
-import { Inter } from "next/font/google";
-import ActiveSectionContextProvider from "@/context/active-section-context";
+import type { Metadata } from "next";
+import Header from "@/components/header";
 import Footer from "@/components/footer";
 import ThemeSwitch from "@/components/theme-switch";
 import ThemeContextProvider from "@/context/theme-context";
+import ActiveSectionContextProvider from "@/context/active-section-context";
 import { Toaster } from "react-hot-toast";
-import Cursor from "@/components/cursor";
-import BackgroundGradient from "@/components/background-gradient";
-import ScrollProgress from "@/components/scroll-progress";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata = {
-  title: "Ali Al-Fatlawi - Software Engineer",
-  description: "Ali Al-Fatlawi is a Software Engineer passionate about creating innovative digital solutions and building scalable applications.",
+export const metadata: Metadata = {
+  title: "Ali Al-Fatlawi — Software Engineer",
+  description:
+    "Software engineer building iOS apps, web products, and the quiet tooling in between. Based in Ankara.",
 };
+
+const setInitialTheme = `
+(function () {
+  try {
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = stored || (prefersDark ? 'dark' : 'light');
+    if (theme === 'dark') document.documentElement.classList.add('dark');
+  } catch (e) {}
+})();
+`;
 
 export default function RootLayout({
   children,
@@ -23,41 +30,45 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="!scroll-smooth">
-      <body
-        className={`${inter.className} text-gray-950 relative pt-28 sm:pt-36 dark:text-gray-50 dark:text-opacity-90 overflow-x-hidden`}
-      >
-        <Cursor />
-        <ScrollProgress />
-        <BackgroundGradient />
-
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..700&family=JetBrains+Mono:wght@400;500&display=swap"
+        />
+        <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
+      </head>
+      <body className="min-h-screen bg-bg text-ink antialiased">
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
             <Header />
-            <main className="relative z-10">
-              {children}
-            </main>
+            <main id="content">{children}</main>
             <Footer />
-
+            <ThemeSwitch />
             <Toaster
-              position="top-right"
+              position="bottom-right"
               toastOptions={{
                 duration: 4000,
                 style: {
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '12px',
-                  color: '#374151',
-                  boxShadow: '0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                  background: "var(--bg-raised)",
+                  color: "var(--ink)",
+                  border: "1px solid var(--rule)",
+                  borderRadius: "4px",
+                  fontSize: "var(--fs-sm)",
+                  boxShadow: "none",
+                  padding: "12px 16px",
                 },
               }}
             />
-            <ThemeSwitch />
           </ActiveSectionContextProvider>
         </ThemeContextProvider>
       </body>
     </html>
   );
 }
-
