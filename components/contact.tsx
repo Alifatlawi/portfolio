@@ -27,8 +27,7 @@ export default function Contact() {
         <div className="col-span-12 md:col-span-5">
           <p className="measure text-lg leading-relaxed text-ink-2 mb-10">
             For app builds, engineering collaborations, or quiet coffees in
-            Ankara — send a note. I read everything, and I try to answer
-            within a day.
+            Ankara — send a note. I read everything.
           </p>
 
           <dl className="flex flex-col gap-5 label tabular">
@@ -73,17 +72,17 @@ export default function Contact() {
               href="https://github.com/Alifatlawi"
               target="_blank"
               rel="noopener noreferrer"
-              className="link-reveal"
+              className="link-reveal py-2 -my-2 inline-flex items-center"
             >
-              GitHub ↗
+              GitHub <span aria-hidden="true">↗</span>
             </a>
             <a
               href="https://www.linkedin.com/in/alfatlawi/"
               target="_blank"
               rel="noopener noreferrer"
-              className="link-reveal"
+              className="link-reveal py-2 -my-2 inline-flex items-center"
             >
-              LinkedIn ↗
+              LinkedIn <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
@@ -110,7 +109,7 @@ export default function Contact() {
                 required
                 maxLength={500}
                 placeholder="you@studio.com"
-                className="bg-transparent border-0 rule-bottom px-0 py-3 text-lg text-ink placeholder:text-muted focus:outline-none focus:border-accent transition-colors duration-base ease-out-quart"
+                className="bg-transparent border-0 border-b border-rule px-0 py-3 text-lg text-ink placeholder:text-muted focus:outline-none focus:border-b-2 focus:border-accent transition-[border-color,border-bottom-width] duration-base ease-out-quart"
               />
             </label>
 
@@ -122,7 +121,7 @@ export default function Contact() {
                 maxLength={5000}
                 rows={6}
                 placeholder="Tell me about the idea, the timeline, or just say hi."
-                className="bg-transparent border-0 rule-bottom px-0 py-3 text-lg text-ink placeholder:text-muted focus:outline-none focus:border-accent transition-colors duration-base ease-out-quart resize-none"
+                className="bg-transparent border-0 border-b border-rule px-0 py-3 text-lg text-ink placeholder:text-muted focus:outline-none focus:border-b-2 focus:border-accent transition-[border-color,border-bottom-width] duration-base ease-out-quart resize-none"
               />
             </label>
 

@@ -45,6 +45,12 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
       </head>
       <body className="min-h-screen bg-bg text-ink antialiased">
+        <a
+          href="#content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-ink focus:text-bg focus:px-4 focus:py-2 focus:text-sm focus:tracking-tight"
+        >
+          Skip to content
+        </a>
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
             <Header />

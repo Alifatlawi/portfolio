@@ -38,10 +38,11 @@ export default function About() {
               occasionally a web front-end when a project asks for one.
             </p>
             <p>
-              Two of those apps are on the App Store: a schedule planner used
-              daily by students across my university, and a community app
-              that knits small groups together through messaging and files.
-              Both taught me the same lesson — the interesting engineering
+              Four of those are live on the App Store: a schedule manager
+              adopted by 7,000 Atılım students, a learning platform for
+              Libyan students, a mental-health companion in Arabic, and a
+              sketching tool that turns any iPhone into a tracing tool.
+              Each one taught me the same lesson — the interesting engineering
               happens <em>after</em> the demo works.
             </p>
             <p>

@@ -12,7 +12,7 @@ export default function ThemeSwitch() {
       type="button"
       onClick={toggleTheme}
       aria-label={`Switch to ${label.toLowerCase()} mode`}
-      className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 bg-raised label tabular text-ink-2 hover:text-ink px-3 py-2 ring-1 ring-rule hover:ring-rule-strong transition-colors duration-fast backdrop-blur-sm"
+      className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 bg-raised label tabular text-ink-2 hover:text-ink px-3 py-2 min-h-[44px] min-w-[44px] justify-center ring-1 ring-rule hover:ring-rule-strong transition-colors duration-fast backdrop-blur-sm"
     >
       <span
         aria-hidden

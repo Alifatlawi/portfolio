@@ -10,7 +10,7 @@ export default function SubmitBtn() {
     <button
       type="submit"
       disabled={pending}
-      className="group inline-flex items-center gap-3 bg-ink text-bg px-5 py-3 text-sm tracking-tight transition-colors duration-base ease-out-quart hover:bg-accent disabled:opacity-60 disabled:cursor-not-allowed"
+      className="group inline-flex items-center gap-3 bg-ink text-bg px-5 py-3 min-h-[44px] text-sm tracking-tight transition-colors duration-base ease-out-quart hover:bg-accent disabled:opacity-60 disabled:cursor-not-allowed"
     >
       <span>{pending ? "Sending…" : "Send message"}</span>
       <svg

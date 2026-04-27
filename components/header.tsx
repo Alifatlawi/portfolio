@@ -64,6 +64,7 @@ export default function Header() {
                       setActiveSection(link.name);
                       setTimeOfLastClick(Date.now());
                     }}
+                    aria-current={active ? "true" : undefined}
                     className={clsx(
                       "group relative inline-flex items-center gap-2 px-3 py-2 transition-colors duration-fast",
                       active
@@ -125,6 +126,7 @@ export default function Header() {
                         setTimeOfLastClick(Date.now());
                         setMobileOpen(false);
                       }}
+                      aria-current={active ? "true" : undefined}
                       className={clsx(
                         "flex items-baseline justify-between gap-4 py-4 rule-bottom transition-colors",
                         active ? "text-ink" : "text-ink-2"
