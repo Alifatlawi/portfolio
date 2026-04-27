@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import SectionHeading from "./section-heading";
 import { projectsData } from "@/lib/data";
-import { useSectionInView } from "@/lib/hooks";
+import { useSectionInView, useScrollReveal } from "@/lib/hooks";
 
 type Project = (typeof projectsData)[number];
 
@@ -18,6 +18,7 @@ const GROUP_LABELS: Record<string, string> = {
 
 export default function Projects() {
   const { ref } = useSectionInView("Projects", 0.25);
+  const revealRef = useScrollReveal();
 
   const grouped = GROUP_ORDER.map((group) => ({
     group,
@@ -32,16 +33,19 @@ export default function Projects() {
       aria-labelledby="projects-heading"
       className="page py-24 md:py-32 scroll-mt-24"
     >
-      <SectionHeading index="01" eyebrow="Selected work">
-        <span id="projects-heading">
-          Products shipped across web, iOS, and enterprise.
-        </span>
-      </SectionHeading>
+      <div ref={revealRef}>
+        <div data-reveal>
+          <SectionHeading index="01" eyebrow="Selected work">
+            <span id="projects-heading">
+              Products shipped across web, iOS, and enterprise.
+            </span>
+          </SectionHeading>
+        </div>
 
       <div className="flex flex-col gap-20 md:gap-28">
         {grouped.map(({ group, label, projects }) =>
           projects.length === 0 ? null : (
-            <div key={group}>
+            <div key={group} data-reveal>
               <div className="flex items-center gap-4 mb-10 md:mb-12">
                 <p className="label tabular text-accent">{label}</p>
                 <span className="h-px flex-1 bg-rule" aria-hidden />
@@ -70,6 +74,7 @@ export default function Projects() {
             </div>
           )
         )}
+      </div>
       </div>
     </section>
   );

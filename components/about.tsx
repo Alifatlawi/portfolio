@@ -2,7 +2,7 @@
 
 import React from "react";
 import SectionHeading from "./section-heading";
-import { useSectionInView } from "@/lib/hooks";
+import { useSectionInView, useScrollReveal } from "@/lib/hooks";
 
 const stack = [
   { group: "Mobile", items: ["Swift", "SwiftUI", "UIKit", "Flutter"] },
@@ -13,6 +13,7 @@ const stack = [
 
 export default function About() {
   const { ref } = useSectionInView("About");
+  const revealRef = useScrollReveal();
 
   return (
     <section
@@ -21,13 +22,16 @@ export default function About() {
       aria-labelledby="about-heading"
       className="page py-24 md:py-32 scroll-mt-24"
     >
-      <SectionHeading index="02" eyebrow="Notes on the work">
-        <span id="about-heading">
-          A software engineer, in the workshop sense of the word.
-        </span>
-      </SectionHeading>
+      <div ref={revealRef}>
+        <div data-reveal>
+          <SectionHeading index="02" eyebrow="Notes on the work">
+            <span id="about-heading">
+              A software engineer, in the workshop sense of the word.
+            </span>
+          </SectionHeading>
+        </div>
 
-      <div className="grid grid-cols-12 gap-6 md:gap-10 rule-top pt-12 md:pt-16">
+      <div className="grid grid-cols-12 gap-6 md:gap-10 rule-top pt-12 md:pt-16" data-reveal>
         <div className="col-span-12 md:col-span-7">
           <div className="measure space-y-6 text-lg leading-relaxed text-ink-2">
             <p>
@@ -79,6 +83,7 @@ export default function About() {
             ))}
           </dl>
         </aside>
+      </div>
       </div>
     </section>
   );

@@ -3,10 +3,11 @@
 import React from "react";
 import SectionHeading from "./section-heading";
 import { experiencesData } from "@/lib/data";
-import { useSectionInView } from "@/lib/hooks";
+import { useSectionInView, useScrollReveal } from "@/lib/hooks";
 
 export default function Experience() {
   const { ref } = useSectionInView("Experience");
+  const revealRef = useScrollReveal();
 
   return (
     <section
@@ -15,13 +16,16 @@ export default function Experience() {
       aria-labelledby="experience-heading"
       className="page py-24 md:py-32 scroll-mt-24"
     >
-      <SectionHeading index="03" eyebrow="Ledger">
-        <span id="experience-heading">
-          Where the time has gone.
-        </span>
-      </SectionHeading>
+      <div ref={revealRef}>
+        <div data-reveal>
+          <SectionHeading index="03" eyebrow="Ledger">
+            <span id="experience-heading">
+              Where the time has gone.
+            </span>
+          </SectionHeading>
+        </div>
 
-      <ol className="rule-top">
+      <ol className="rule-top" data-reveal>
         {experiencesData
           .slice()
           .reverse()
@@ -51,6 +55,7 @@ export default function Experience() {
             </li>
           ))}
       </ol>
+      </div>
     </section>
   );
 }

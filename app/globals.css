@@ -252,15 +252,18 @@
   .reveal-delay-5 { animation-delay: 300ms; }
 
   @keyframes reveal-in {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0);   }
   }
 
-  /* Scroll-triggered (added when element enters viewport via IntersectionObserver) */
-  .in-view {
-    animation: reveal-in var(--dur-slow) var(--ease-out-quart) both;
+  /* Scroll-triggered: .js-ready on <html> pre-hides [data-reveal] elements;
+     IntersectionObserver adds .in-view to each when it enters the viewport. */
+  .js-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  .js-ready [data-reveal].in-view {
+    animation: reveal-in var(--dur-slow) var(--ease-out-quart) forwards;
   }
 
   .dot {
@@ -302,7 +305,8 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
-  .reveal {
+  .reveal,
+  .js-ready [data-reveal] {
     opacity: 1;
     transform: none;
   }

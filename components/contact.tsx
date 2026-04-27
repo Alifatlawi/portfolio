@@ -4,11 +4,12 @@ import React from "react";
 import toast from "react-hot-toast";
 import SectionHeading from "./section-heading";
 import SubmitBtn from "./submit-btn";
-import { useSectionInView } from "@/lib/hooks";
+import { useSectionInView, useScrollReveal } from "@/lib/hooks";
 import { sendEmail } from "@/actions/sendEmail";
 
 export default function Contact() {
   const { ref } = useSectionInView("Contact");
+  const revealRef = useScrollReveal();
 
   return (
     <section
@@ -17,14 +18,17 @@ export default function Contact() {
       aria-labelledby="contact-heading"
       className="page py-24 md:py-32 scroll-mt-24"
     >
-      <SectionHeading index="04" eyebrow="Say hello">
-        <span id="contact-heading">
-          The door is open.
-        </span>
-      </SectionHeading>
+      <div ref={revealRef}>
+        <div data-reveal>
+          <SectionHeading index="04" eyebrow="Say hello">
+            <span id="contact-heading">
+              The door is open.
+            </span>
+          </SectionHeading>
+        </div>
 
       <div className="grid grid-cols-12 gap-6 md:gap-10 rule-top pt-12 md:pt-16">
-        <div className="col-span-12 md:col-span-5">
+        <div className="col-span-12 md:col-span-5" data-reveal>
           <p className="measure text-lg leading-relaxed text-ink-2 mb-10">
             For app builds, engineering collaborations, or quiet coffees in
             Ankara — send a note. I read everything.
@@ -89,6 +93,7 @@ export default function Contact() {
 
         <form
           className="col-span-12 md:col-span-7"
+          data-reveal
           action={async (formData) => {
             const { error } = await sendEmail(formData);
             if (error) {
@@ -133,6 +138,7 @@ export default function Contact() {
             </div>
           </fieldset>
         </form>
+      </div>
       </div>
     </section>
   );
