@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Murafa'a product site. Palette lives in tailwind.config.js under `murafa`. */
+
+@layer base {
+  html {
+    color-scheme: light;
+    background: #f3f1ec;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    margin: 0;
+    background: #f3f1ec;
+    color: #18201d;
+    font-family: "IBM Plex Sans Arabic", "IBM Plex Sans", -apple-system,
+      BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Latin runs (prices, "App Store", "Face ID") read better in Plex Sans proper */
+  [lang="en"] body,
+  [lang="en"] {
+    font-family: "IBM Plex Sans", "IBM Plex Sans Arabic", -apple-system,
+      BlinkMacSystemFont, sans-serif;
+  }
+
+  ::selection {
+    background: #e1ece7;
+    color: #123d33;
+  }
+
+  :focus-visible {
+    outline: 2px solid #1d5a4c;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  .m-icon {
+    font-family: "Material Symbols Rounded";
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    direction: ltr;
+    display: inline-block;
+    font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+  }
+
+  .m-balance {
+    text-wrap: balance;
+  }
+
+  .m-pretty {
+    text-wrap: pretty;
+  }
+}

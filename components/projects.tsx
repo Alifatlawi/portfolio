@@ -178,7 +178,8 @@ function CompactCard({ project }: { project: Project }) {
         </div>
         {project.url && project.linkLabel ? (
           <span className="link-underline label tabular text-ink-2">
-            {project.linkLabel} <span aria-hidden="true">↗</span>
+            {project.linkLabel}{" "}
+            <span aria-hidden="true">{isExternal(project.url) ? "↗" : "→"}</span>
           </span>
         ) : null}
       </div>
@@ -189,8 +190,9 @@ function CompactCard({ project }: { project: Project }) {
     return (
       <Link
         href={project.url}
-        target="_blank"
-        rel="noopener noreferrer"
+        {...(isExternal(project.url)
+          ? { target: "_blank", rel: "noopener noreferrer" }
+          : {})}
         className="group block rounded-sm ring-1 ring-rule bg-raised hover:ring-rule-strong transition-[box-shadow,ring-color] duration-base"
         aria-label={`${project.title} — ${project.linkLabel}`}
       >
@@ -202,4 +204,8 @@ function CompactCard({ project }: { project: Project }) {
   return (
     <div className="rounded-sm ring-1 ring-rule bg-raised">{content}</div>
   );
+}
+
+function isExternal(url: string) {
+  return /^https?:\/\//.test(url);
 }

@@ -56,6 +56,18 @@ export const projectsData = [
   },
   // ── iOS ─────────────────────────────────────────────────────
   {
+    title: "Murafa’a",
+    description:
+      "Arabic-first practice manager for lawyers in Iraq. Scan national IDs and powers of attorney, track court sessions and postponements, and get reminded before every hearing. Files stay on-device and in the lawyer's own iCloud, locked with Face ID.",
+    tags: ["Swift", "SwiftUI", "iOS"],
+    url: "/murafa",
+    category: "iOS App · Legal",
+    status: "Coming soon",
+    year: "2026",
+    group: "iOS",
+    linkLabel: "Product site",
+  },
+  {
     title: "Atilim Schedule",
     description:
       "Schedule manager for Atılım University students. Add courses, view a weekly timetable, and use auto-generation to build a conflict-free schedule. Adopted by ~7,000 students. No data collected.",
