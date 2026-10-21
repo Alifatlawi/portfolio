@@ -35,8 +35,8 @@ export default function About() {
         <div className="col-span-12 md:col-span-7">
           <div className="measure space-y-6 text-lg leading-relaxed text-ink-2">
             <p>
-              I&apos;m finishing a Software Engineering degree at Atılım
-              University in Ankara, and I&apos;ve spent the past three years
+              I studied Software Engineering at Atılım University in Ankara,
+              graduating in 2026, and I&apos;ve spent the past three years
               shipping real things to real people — mostly iOS apps in Swift
               and SwiftUI, sometimes the server that keeps them honest, and
               occasionally a web front-end when a project asks for one.
