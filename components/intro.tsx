@@ -38,11 +38,11 @@ export default function Intro() {
             <br aria-hidden />
             builds{" "}
             <MorphingWord
-              words={["apps", "systems", "tools", "interfaces", "software"]}
-              ariaWord="software"
+              words={["apps", "systems", "tools", "interfaces", "products"]}
+              ariaWord="apps"
             />
             <br aria-hidden />
-            that ships<span className="text-accent">.</span>
+            that ship<span className="text-accent">.</span>
           </h1>
         </div>
 
@@ -124,9 +124,7 @@ export default function Intro() {
               >
                 LinkedIn <span aria-hidden="true">↗</span>
               </a>
-              <a href="/CV.pdf" className="link-reveal py-2 -my-2 inline-flex items-center">
-                CV <span aria-hidden="true">↗</span>
-              </a>
+              {/* CV link hidden until public/CV.pdf has real content (it is 0 bytes) */}
             </div>
           </div>
         </div>

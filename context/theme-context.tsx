@@ -23,17 +23,24 @@ export default function ThemeContextProvider({
   const toggleTheme = () => {
     if (theme === "light") {
       setTheme("dark");
-      window.localStorage.setItem("theme", "dark");
+      try {
+        window.localStorage.setItem("theme", "dark");
+      } catch {}
       document.documentElement.classList.add("dark");
     } else {
       setTheme("light");
-      window.localStorage.setItem("theme", "light");
+      try {
+        window.localStorage.setItem("theme", "light");
+      } catch {}
       document.documentElement.classList.remove("dark");
     }
   };
 
   useEffect(() => {
-    const localTheme = window.localStorage.getItem("theme") as Theme | null;
+    let localTheme: Theme | null = null;
+    try {
+      localTheme = window.localStorage.getItem("theme") as Theme | null;
+    } catch {}
 
     if (localTheme) {
       setTheme(localTheme);

@@ -76,6 +76,10 @@ export default function About() {
                           ·
                         </span>
                       ) : null}
+                      {i < group.items.length - 1 ? (
+                        // Line-break opportunity, so the list wraps on phones
+                        <wbr />
+                      ) : null}
                     </React.Fragment>
                   ))}
                 </dd>

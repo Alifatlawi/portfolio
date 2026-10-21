@@ -37,7 +37,7 @@ export default function Contact() {
           <dl className="flex flex-col gap-5 label tabular">
             <div className="grid grid-cols-[4.5rem_1fr] gap-x-4 items-baseline">
               <dt className="text-ink-3">Email</dt>
-              <dd>
+              <dd className="min-w-0 [overflow-wrap:anywhere]">
                 <a
                   href="mailto:ali.a.mardan@gmail.com"
                   className="link-underline normal-case tracking-normal text-base"
@@ -95,9 +95,17 @@ export default function Contact() {
           className="col-span-12 md:col-span-7"
           data-reveal
           action={async (formData) => {
-            const { error } = await sendEmail(formData);
-            if (error) {
-              toast.error(error);
+            // A failed request (offline, a stale tab after a deploy, a server
+            // error) used to replace the whole page with Next's error screen.
+            let result: Awaited<ReturnType<typeof sendEmail>> | undefined;
+            try {
+              result = await sendEmail(formData);
+            } catch {
+              toast.error("Couldn't send. Try again, or email me directly.");
+              return;
+            }
+            if (!result || result.error) {
+              toast.error(result?.error ?? "Couldn't send. Try again, or email me directly.");
               return;
             }
             toast.success("Message sent. I'll get back to you.");
