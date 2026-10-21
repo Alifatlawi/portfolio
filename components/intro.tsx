@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import MorphingWord from "./morphing-word";
+import Phone3D from "./phone-3d";
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
@@ -16,7 +17,7 @@ export default function Intro() {
       ref={ref}
       id="home"
       aria-labelledby="intro-heading"
-      className="page pt-28 md:pt-32 pb-20 md:pb-28 scroll-mt-24"
+      className="page pt-28 md:pt-32 pb-20 md:pb-28 scroll-mt-24 overflow-x-clip"
     >
       <div className="grid grid-cols-12 gap-x-6 gap-y-10">
         {/* Eyebrow */}
@@ -29,10 +30,10 @@ export default function Intro() {
         </div>
 
         {/* Display */}
-        <div className="col-span-12 md:col-span-9">
+        <div className="col-span-12 md:col-span-9 lg:col-span-6">
           <h1
             id="intro-heading"
-            className="display text-ink text-[clamp(2.75rem,8vw+1rem,7.5rem)] reveal reveal-delay-1"
+            className="display text-ink text-[clamp(2.75rem,8vw+1rem,7.5rem)] lg:text-[clamp(2.75rem,8vw,6.25rem)] reveal reveal-delay-1"
           >
             <span className="text-ink-3">Ali Al-Fatlawi</span>
             <br aria-hidden />
@@ -47,7 +48,7 @@ export default function Intro() {
         </div>
 
         {/* Divider */}
-        <div className="col-span-12 rule-top mt-4" aria-hidden />
+        <div className="col-span-12 lg:col-span-9 rule-top mt-4" aria-hidden />
 
         {/* Portrait + meta */}
         <aside className="col-span-12 md:col-span-3 flex md:block gap-4 items-start">
@@ -75,7 +76,7 @@ export default function Intro() {
         </aside>
 
         {/* Lede */}
-        <div className="col-span-12 md:col-span-9 md:col-start-4">
+        <div className="col-span-12 md:col-span-9 md:col-start-4 lg:col-span-6">
           <p className="measure text-lg md:text-xl lg:text-[1.75rem] leading-snug text-ink-2 reveal reveal-delay-2">
             I design and build across iOS, web, and the infrastructure
             underneath. Four apps are live on the App Store; more are in the
@@ -127,6 +128,13 @@ export default function Intro() {
               {/* CV link hidden until public/CV.pdf has real content (it is 0 bytes) */}
             </div>
           </div>
+        </div>
+
+        {/* The work: a 3D phone with the live apps. At lg it stands in the
+            right-hand columns beside the headline and lede; below lg it
+            follows the lede, centred. */}
+        <div className="col-span-12 mx-auto w-full max-w-[17rem] mt-4 lg:mt-0 lg:col-span-3 lg:col-start-10 lg:row-start-1 lg:row-span-3 lg:self-center lg:mr-0 lg:max-w-[min(100%,calc((100vh-19rem)*0.483))]">
+          <Phone3D />
         </div>
       </div>
     </section>
