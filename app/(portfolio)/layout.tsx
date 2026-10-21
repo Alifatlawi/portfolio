@@ -1,31 +1,16 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Reem_Kufi, Readex_Pro } from "next/font/google";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import ThemeSwitch from "@/components/theme-switch";
 import ThemeContextProvider from "@/context/theme-context";
 import ActiveSectionContextProvider from "@/context/active-section-context";
 import { Toaster } from "react-hot-toast";
 
-// Both faces are drawn for Latin and Arabic together, so the two scripts
-// share colour, weight and baseline.
-const display = Reem_Kufi({
-  subsets: ["latin", "arabic"],
-  variable: "--font-reem",
-  display: "swap",
-});
-
-const text = Readex_Pro({
-  subsets: ["latin", "arabic"],
-  variable: "--font-readex",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   title: "Ali Al-Fatlawi — Software Engineer",
   description:
-    "Software engineer in Ankara building iOS apps, web products, and the backend underneath. Four apps live on the App Store.",
-  themeColor: "#22389A",
+    "Software engineer building iOS apps, web products, and the quiet tooling in between. Based in Ankara.",
 };
 
 const setInitialTheme = `
@@ -46,18 +31,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${display.variable} ${text.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..700&family=JetBrains+Mono:wght@400;500&display=swap"
+        />
         <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
       </head>
-      <body className="min-h-screen bg-bg text-ink">
+      <body className="min-h-screen bg-bg text-ink antialiased">
         <a
           href="#content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-saffron focus:text-on-saffron focus:px-4 focus:py-2 focus:text-sm"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-ink focus:text-bg focus:px-4 focus:py-2 focus:text-sm focus:tracking-tight"
         >
           Skip to content
         </a>
@@ -66,21 +57,19 @@ export default function RootLayout({
             <Header />
             <main id="content">{children}</main>
             <Footer />
+            <ThemeSwitch />
             <Toaster
               position="bottom-right"
               toastOptions={{
-                duration: 5000,
+                duration: 4000,
                 style: {
-                  background: "var(--ink)",
-                  color: "var(--bg)",
-                  borderRadius: "0",
-                  fontFamily: "var(--font-text)",
+                  background: "var(--bg-raised)",
+                  color: "var(--ink)",
+                  border: "1px solid var(--rule)",
+                  borderRadius: "4px",
                   fontSize: "var(--fs-sm)",
                   boxShadow: "none",
                   padding: "12px 16px",
-                },
-                success: {
-                  iconTheme: { primary: "var(--saffron)", secondary: "var(--ink)" },
                 },
               }}
             />

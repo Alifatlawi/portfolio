@@ -2,21 +2,23 @@
 
 import React from "react";
 import { useTheme } from "@/context/theme-context";
-import { Moon, Sun } from "./icons";
 
 export default function ThemeSwitch() {
   const { theme, toggleTheme } = useTheme();
-  const next = theme === "light" ? "dark" : "light";
+  const label = theme === "light" ? "Dark" : "Light";
 
   return (
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label={`Switch to ${next} mode`}
-      title={`Switch to ${next} mode`}
-      className="inline-flex h-11 w-11 items-center justify-center text-field-ink-2 hover:text-field-ink transition-colors duration-base"
+      aria-label={`Switch to ${label.toLowerCase()} mode`}
+      className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 bg-raised label tabular text-ink-2 hover:text-ink px-3 py-2 min-h-[44px] min-w-[44px] justify-center ring-1 ring-rule hover:ring-rule-strong transition-colors duration-fast backdrop-blur-sm"
     >
-      {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+      <span
+        aria-hidden
+        className="w-[6px] h-[6px] rounded-full bg-accent"
+      />
+      <span>{label}</span>
     </button>
   );
 }

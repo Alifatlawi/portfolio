@@ -1,19 +1,20 @@
 import React from "react";
 
-// The colophon: printed on the same lapis field as the contact close.
 export default function Footer() {
   return (
-    <footer className="field border-t border-field-rule">
-      <div className="page flex flex-col md:flex-row md:items-baseline justify-between gap-3 py-8 label text-field-ink-2">
-        <p>
-          <span className="text-field-ink">Ali Al-Fatlawi</span> · &copy;{" "}
-          {new Date().getFullYear()} · Built in Ankara
+    <footer className="page rule-top py-10 md:py-14">
+      <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 label tabular">
+        <p className="text-ink-3">
+          <span className="text-ink-2">Ali Al-Fatlawi</span>
+          <span className="mx-2 text-rule-strong">·</span>
+          <span>&copy; {new Date().getFullYear()}</span>
+          <span className="mx-2 text-rule-strong">·</span>
+          <span>Built in Ankara</span>
         </p>
-        <p className="flex items-baseline gap-3">
-          <span>Set in Reem Kufi and Readex Pro</span>
-          <span lang="ar" dir="rtl" className="font-display text-lg leading-none text-field-ink">
-            علي الفتلاوي
-          </span>
+        <p className="text-ink-3">
+          Set in Bricolage Grotesque
+          <span className="mx-2 text-rule-strong">&amp;</span>
+          JetBrains Mono
         </p>
       </div>
     </footer>

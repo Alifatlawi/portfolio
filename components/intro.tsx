@@ -1,160 +1,134 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { projectsData, shelfApps, sizeOf } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
-import { ArrowRight, ArrowUpRight } from "./icons";
-
-const shelf = shelfApps.map((app) => {
-  const project = projectsData.find((p) => p.title === app.title);
-  if (!project || !project.points || !project.url) {
-    throw new Error(`Shelf app "${app.title}" needs points and a url in projectsData`);
-  }
-  return { ...app, project, points: project.points, url: project.url };
-});
+import MorphingWord from "./morphing-word";
 
 export default function Intro() {
-  const { ref } = useSectionInView("Home");
+  const { ref } = useSectionInView("Home", 0.5);
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
-  const [active, setActive] = useState<number | null>(null);
 
   return (
     <section
       ref={ref}
       id="home"
       aria-labelledby="intro-heading"
-      className="hero field"
+      className="page pt-32 md:pt-40 pb-20 md:pb-28 scroll-mt-24"
     >
-      <div className="page hero-grid">
-        <h1 id="intro-heading" className="hero-name display">
-          Ali Al-Fatlawi
-        </h1>
-
-        <p lang="ar" dir="rtl" className="hero-ar">
-          علي الفتلاوي
-        </p>
-
-        <p className="hero-claim display">
-          builds apps that ship<span className="text-saffron">.</span>
-        </p>
-
-        {/* DOM order follows the phone layout (screens before copy); at lg
-            the grid areas move the screens to the right-hand column. */}
-        <div className="hero-shelf shelf">
-          <ul
-            className="shelf-track"
-            aria-label="Four apps live on the App Store"
-            data-engaged={active !== null}
-            onMouseLeave={() => setActive(null)}
-          >
-            {shelf.map((app, i) => {
-              const { width, height } = sizeOf(app.screen);
-              // The label plate: year, platform, status, link — same fields,
-              // same positions on every plate.
-              const status = app.project.status.split(" · ")[0];
-              return (
-                <li
-                  key={app.title}
-                  className="shelf-item"
-                  data-active={active === i}
-                  style={{ "--w": app.points.w, "--i": i } as React.CSSProperties}
-                >
-                  <a
-                    href={app.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block"
-                    onMouseEnter={() => setActive(i)}
-                    onFocus={() => setActive(i)}
-                    onBlur={() => setActive(null)}
-                  >
-                    <span className="shelf-dim">
-                      <Image
-                        src={app.screen}
-                        width={width}
-                        height={height}
-                        alt=""
-                        priority
-                        sizes="(min-width: 1024px) 220px, (min-width: 768px) 190px, 40vw"
-                        className="screen shelf-screen"
-                        data-device={app.points.h < 800 ? "plus" : undefined}
-                      />
-                    </span>
-                    <span className="shelf-plate block">
-                      <span className="shelf-plate-name block text-[0.9375rem] font-medium leading-tight text-field-ink transition-colors duration-base">
-                        {app.label}
-                      </span>
-                      <span className="flex items-center gap-1.5 whitespace-nowrap label text-field-ink-2">
-                        {app.project.year}
-                        <span className="shelf-plate-platform"> · iOS</span> · {status}
-                        <span className="sr-only">, on the App Store (opens in a new tab)</span>
-                        <ArrowUpRight
-                          size={13}
-                          className="shrink-0 text-saffron transition-transform duration-base ease-out-quart group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                        />
-                      </span>
-                    </span>
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+      <div className="grid grid-cols-12 gap-x-6 gap-y-10">
+        {/* Eyebrow */}
+        <div className="col-span-12 md:col-span-3 md:pt-3">
+          <p className="label tabular reveal">
+            <span className="text-accent">Portfolio</span>
+            <span className="mx-2 text-rule-strong">/</span>
+            <span>2021 — present</span>
+          </p>
         </div>
 
-        <div className="hero-copy">
-          <p className="text-base md:text-lg leading-[1.55] text-field-ink-2 max-w-[36ch]">
+        {/* Display */}
+        <div className="col-span-12 md:col-span-9">
+          <h1
+            id="intro-heading"
+            className="display text-ink text-[clamp(2.75rem,8vw+1rem,7.5rem)] reveal reveal-delay-1"
+          >
+            <span className="text-ink-3">Ali Al-Fatlawi</span>
+            <br aria-hidden />
+            builds{" "}
+            <MorphingWord
+              words={["apps", "systems", "tools", "interfaces", "software"]}
+              ariaWord="software"
+            />
+            <br aria-hidden />
+            that ships<span className="text-accent">.</span>
+          </h1>
+        </div>
+
+        {/* Divider */}
+        <div className="col-span-12 rule-top mt-4" aria-hidden />
+
+        {/* Portrait + meta */}
+        <aside className="col-span-12 md:col-span-3 flex md:block gap-4 items-start">
+          <div className="relative h-24 w-24 md:h-32 md:w-32 overflow-hidden rounded-sm ring-1 ring-rule reveal reveal-delay-2">
+            <Image
+              src="/IMG_8819.JPG"
+              alt="Ali Al-Fatlawi"
+              fill
+              sizes="(min-width: 768px) 128px, 96px"
+              className="object-cover"
+              priority
+            />
+          </div>
+          <dl className="md:mt-6 grid grid-cols-[max-content_1fr] gap-x-4 gap-y-2 label tabular reveal reveal-delay-3">
+            <dt className="text-ink-3">Based</dt>
+            <dd className="text-ink-2">Ankara, TR</dd>
+            <dt className="text-ink-3">Role</dt>
+            <dd className="text-ink-2">Software Engineer</dd>
+            <dt className="text-ink-3">Open</dt>
+            <dd className="flex items-center gap-2 text-ink-2">
+              <span className="dot" aria-hidden />
+              <span>For work</span>
+            </dd>
+          </dl>
+        </aside>
+
+        {/* Lede */}
+        <div className="col-span-12 md:col-span-9 md:col-start-4">
+          <p className="measure text-xl md:text-2xl leading-snug text-ink-2 reveal reveal-delay-2">
             I design and build across iOS, web, and the infrastructure
             underneath. Four apps are live on the App Store; more are in the
             quiet part of the workshop.
           </p>
 
-          <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-3">
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 reveal reveal-delay-4">
             <Link
               href="#contact"
               onClick={() => {
                 setActiveSection("Contact");
                 setTimeOfLastClick(Date.now());
               }}
-              className="btn-saffron"
+              className="group inline-flex items-center gap-3 bg-ink text-bg px-5 py-3 min-h-[44px] text-sm tracking-tight transition-colors duration-base ease-out-quart hover:bg-accent hover:text-bg"
             >
-              Start a conversation
-              <ArrowRight size={16} />
+              <span>Start a conversation</span>
+              <svg
+                aria-hidden
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="square"
+                className="transition-transform duration-base ease-out-quart group-hover:translate-x-0.5"
+              >
+                <path d="M5 12h14M13 5l7 7-7 7" />
+              </svg>
             </Link>
 
-            <ul className="flex items-center gap-6 text-sm">
-              <li>
-                <a
-                  href="https://github.com/Alifatlawi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link inline-flex items-center gap-1.5 py-2.5 text-field-ink"
-                >
-                  GitHub
-                  <ArrowUpRight size={13} />
-                  <span className="sr-only">(opens in a new tab)</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/alfatlawi/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link inline-flex items-center gap-1.5 py-2.5 text-field-ink"
-                >
-                  LinkedIn
-                  <ArrowUpRight size={13} />
-                  <span className="sr-only">(opens in a new tab)</span>
-                </a>
-              </li>
-            </ul>
+            <div className="flex items-center gap-6 label tabular">
+              <a
+                href="https://github.com/Alifatlawi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-reveal py-2 -my-2 inline-flex items-center"
+              >
+                GitHub <span aria-hidden="true">↗</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/alfatlawi/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-reveal py-2 -my-2 inline-flex items-center"
+              >
+                LinkedIn <span aria-hidden="true">↗</span>
+              </a>
+              <a href="/CV.pdf" className="link-reveal py-2 -my-2 inline-flex items-center">
+                CV <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
-
-          <p className="hero-footnote hidden lg:block label text-field-ink-2">
-            Live on the App Store, 2024–2026
-          </p>
         </div>
       </div>
     </section>

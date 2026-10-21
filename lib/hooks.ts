@@ -1,21 +1,16 @@
 import { useActiveSectionContext } from "@/context/active-section-context";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import type { SectionName } from "./types";
 
-// A section is "current" while it crosses a thin line just above the middle
-// of the viewport, so sections taller than the screen still register.
-export function useSectionInView(sectionName: SectionName) {
+export function useSectionInView(sectionName: SectionName, threshold = 0.75) {
   const { ref, inView } = useInView({
-    rootMargin: "-45% 0px -54% 0px",
+    threshold,
   });
   const { setActiveSection, timeOfLastClick } = useActiveSectionContext();
 
   useEffect(() => {
-    // At the very top the page belongs to Home, even when a tall screen puts
-    // the next section across the band line.
-    const atTop = window.scrollY < 10 && sectionName !== "Home";
-    if (inView && !atTop && Date.now() - timeOfLastClick > 1000) {
+    if (inView && Date.now() - timeOfLastClick > 1000) {
       setActiveSection(sectionName);
     }
   }, [inView, setActiveSection, timeOfLastClick, sectionName]);
@@ -23,4 +18,38 @@ export function useSectionInView(sectionName: SectionName) {
   return {
     ref,
   };
+}
+
+export function useScrollReveal(stagger = 70) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const container = ref.current;
+    if (!container) return;
+
+    const els = Array.from(
+      container.querySelectorAll<HTMLElement>("[data-reveal]")
+    );
+    if (!els.length) return;
+
+    const observers = els.map((el, i) => {
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            el.style.animationDelay = `${i * stagger}ms`;
+            el.classList.add("in-view");
+            obs.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      obs.observe(el);
+      return obs;
+    });
+
+    return () => observers.forEach((obs) => obs.disconnect());
+  }, [stagger]);
+
+  return ref;
 }

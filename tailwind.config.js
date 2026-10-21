@@ -8,29 +8,21 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-text)", "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["var(--font-display)", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
-        // Paper: the reading sections
         bg: "var(--bg)",
         raised: "var(--bg-raised)",
         ink: "var(--ink)",
         "ink-2": "var(--ink-2)",
         "ink-3": "var(--ink-3)",
+        muted: "var(--muted)",
         rule: "var(--rule)",
         "rule-strong": "var(--rule-strong)",
-        "lapis-text": "var(--lapis-text)",
-        // Field: the lapis spot ink
-        field: "var(--field)",
-        "field-deep": "var(--field-deep)",
-        "field-ink": "var(--field-ink)",
-        "field-ink-2": "var(--field-ink-2)",
-        "field-rule": "var(--field-rule)",
-        // Second ink
-        saffron: "var(--saffron)",
-        "saffron-hover": "var(--saffron-hover)",
-        "on-saffron": "var(--on-saffron)",
+        accent: "var(--accent)",
+        "accent-ink": "var(--accent-ink)",
+        "accent-soft": "var(--accent-soft)",
         // Murafa'a product site (/murafa) — fixed palette, no dark mode
         murafa: {
           green: "#1D5A4C",
@@ -64,7 +56,6 @@ module.exports = {
       },
       spacing: {
         "page-x": "var(--page-pad-x)",
-        header: "var(--header-h)",
       },
       transitionTimingFunction: {
         "out-quart": "cubic-bezier(0.25, 1, 0.5, 1)",
@@ -76,8 +67,8 @@ module.exports = {
         slow: "480ms",
       },
       maxWidth: {
-        measure: "66ch",
-        page: "90rem",
+        measure: "62ch",
+        page: "78rem",
       },
     },
   },

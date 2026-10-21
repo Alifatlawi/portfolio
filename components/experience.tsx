@@ -1,68 +1,60 @@
 "use client";
 
 import React from "react";
-import SectionHead from "./section-head";
+import SectionHeading from "./section-heading";
 import { experiencesData } from "@/lib/data";
-import { useSectionInView } from "@/lib/hooks";
-
-const EASTERN_DIGITS = "٠١٢٣٤٥٦٧٨٩";
-
-/** "2023 - present" → "2023 – present" */
-function formatDate(date: string) {
-  return date.replace(" - ", " – ");
-}
-
-/** "2023 - present" → "٢٠٢٣ – الآن", set from the right margin */
-function formatDateAr(date: string) {
-  return date
-    .replace(/\d/g, (d) => EASTERN_DIGITS[Number(d)])
-    .replace(" - ", " – ")
-    .replace("present", "الآن");
-}
+import { useSectionInView, useScrollReveal } from "@/lib/hooks";
 
 export default function Experience() {
   const { ref } = useSectionInView("Experience");
-  const entries = experiencesData.slice().reverse();
+  const revealRef = useScrollReveal();
 
   return (
     <section
       ref={ref}
       id="experience"
       aria-labelledby="experience-heading"
-      className="pt-28 md:pt-40 pb-24 md:pb-32"
+      className="page py-24 md:py-32 scroll-mt-24"
     >
-      <div className="page">
-        <SectionHead id="experience-heading" titleAr="المسيرة">
-          Where the time has gone.
-        </SectionHead>
+      <div ref={revealRef}>
+        <div data-reveal>
+          <SectionHeading index="03" eyebrow="Ledger">
+            <span id="experience-heading">
+              Where the time has gone.
+            </span>
+          </SectionHeading>
+        </div>
 
-        <ol>
-          {entries.map((item) => (
+      <ol className="rule-top" data-reveal>
+        {experiencesData
+          .slice()
+          .reverse()
+          .map((item, i, arr) => (
             <li
-              key={item.title}
-              className="grid grid-cols-12 gap-x-[var(--gutter)] gap-y-3 py-8 md:py-10 border-b border-rule"
+              key={`${item.title}-${i}`}
+              className="grid grid-cols-12 gap-4 md:gap-8 py-8 md:py-12 rule-bottom"
             >
-              <p className="col-span-12 md:col-span-3 lg:col-span-2 label tabular text-ink-3 md:pt-1.5">
-                {formatDate(item.date)}
-              </p>
-              <div className="col-span-12 md:col-span-9 lg:col-span-4">
-                <h3 className="text-2xl leading-[1.05]">{item.title}</h3>
-                <p className="mt-2 label text-ink-3">{item.location}</p>
+              <div className="col-span-12 md:col-span-2 label tabular text-ink-3 tabular-nums">
+                <span className="text-accent">
+                  {String(arr.length - i).padStart(2, "0")}
+                </span>
+                <span className="mx-2 text-rule-strong">/</span>
+                <span>{item.date}</span>
               </div>
-              <p className="col-span-12 md:col-span-9 md:col-start-4 lg:col-span-5 lg:col-start-auto text-ink-2 leading-[1.7] max-w-[62ch]">
+
+              <div className="col-span-12 md:col-span-4">
+                <h3 className="text-xl md:text-2xl tracking-tight text-ink mb-1">
+                  {item.title}
+                </h3>
+                <p className="label tabular text-ink-3">{item.location}</p>
+              </div>
+
+              <p className="col-span-12 md:col-span-6 text-ink-2 leading-relaxed">
                 {item.description}
-              </p>
-              <p
-                lang="ar"
-                dir="rtl"
-                aria-hidden="true"
-                className="hidden lg:block lg:col-span-1 whitespace-nowrap font-display text-[1.0625rem] leading-none text-lapis-text md:pt-1.5"
-              >
-                {formatDateAr(item.date)}
               </p>
             </li>
           ))}
-        </ol>
+      </ol>
       </div>
     </section>
   );
