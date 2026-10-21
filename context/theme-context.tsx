@@ -21,30 +21,22 @@ export default function ThemeContextProvider({
   const [theme, setTheme] = useState<Theme>("light");
 
   const toggleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-      window.localStorage.setItem("theme", "dark");
-      document.documentElement.classList.add("dark");
-    } else {
-      setTheme("light");
-      window.localStorage.setItem("theme", "light");
-      document.documentElement.classList.remove("dark");
-    }
+    const next: Theme = theme === "light" ? "dark" : "light";
+    setTheme(next);
+    document.documentElement.classList.toggle("dark", next === "dark");
+    // Storage can be blocked (private modes, strict cookie settings); the
+    // toggle must still work for this visit.
+    try {
+      window.localStorage.setItem("theme", next);
+    } catch {}
   };
 
+  // The inline script in the layout has already resolved the stored or
+  // preferred theme onto <html>; mirror it so the toggle shows the right state.
   useEffect(() => {
-    const localTheme = window.localStorage.getItem("theme") as Theme | null;
-
-    if (localTheme) {
-      setTheme(localTheme);
-
-      if (localTheme === "dark") {
-        document.documentElement.classList.add("dark");
-      }
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
-    }
+    setTheme(
+      document.documentElement.classList.contains("dark") ? "dark" : "light"
+    );
   }, []);
 
   return (

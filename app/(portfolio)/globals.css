@@ -4,61 +4,63 @@
 
 /*
   Ali Al-Fatlawi — portfolio
-  Design tokens. Follow the source of truth in .impeccable.md.
-  Palette: warm terracotta accent (hue ~40°), neutrals tinted toward it.
-  Type: Bricolage Grotesque (display + body) + JetBrains Mono (labels).
+  World: bilingual modernist print. A lapis spot ink owns the field
+  (hero, header band, contact close); bright paper carries the reading
+  sections; saffron is the single second ink. Latin hangs from the left
+  margin, Arabic from the right, both on one baseline grid.
+  Type: Reem Kufi (display, Latin + Arabic), Readex Pro (text + labels).
 */
 
 @layer base {
   :root {
     color-scheme: light;
 
-    /* Type families */
-    --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system,
+    --font-display: var(--font-reem), "Geeza Pro", ui-sans-serif, system-ui,
+      sans-serif;
+    --font-text: var(--font-readex), ui-sans-serif, system-ui, -apple-system,
       "Segoe UI", sans-serif;
-    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
-      "Cascadia Code", monospace;
 
-    /* Surface + ink, tinted warm (oklch hue 40) */
-    --bg: oklch(98.5% 0.004 40);
-    --bg-raised: oklch(96% 0.006 40);
-    --ink: oklch(16% 0.013 40);
-    --ink-2: oklch(34% 0.012 40);
-    --ink-3: oklch(50% 0.010 40);
-    --muted: oklch(64% 0.008 40);
-    --rule: oklch(88% 0.006 40);
-    --rule-strong: oklch(78% 0.009 40);
+    /* Paper */
+    --bg: oklch(97.4% 0.004 100);
+    --bg-raised: oklch(94.8% 0.006 100);
+    --ink: oklch(20% 0.024 268);
+    --ink-2: oklch(36% 0.032 268);
+    --ink-3: oklch(46% 0.036 268);
+    --rule: oklch(86.5% 0.014 268);
+    --rule-strong: oklch(20% 0.024 268);
+    --lapis-text: oklch(40% 0.16 268);
 
-    /* Accent: terracotta */
-    --accent: oklch(55% 0.14 40);
-    --accent-ink: oklch(40% 0.12 40);
-    --accent-soft: oklch(93% 0.03 40);
+    /* Field: lapis spot ink (≈ #22389A) */
+    --field: oklch(39% 0.16 268);
+    --field-deep: oklch(32.5% 0.14 268);
+    --field-ink: oklch(97.4% 0.004 100);
+    --field-ink-2: oklch(87% 0.04 268);
+    --field-rule: oklch(97.4% 0.004 100 / 0.32);
+    --screen-edge: oklch(14% 0.05 268 / 0.55);
+    --screen-shadow: oklch(13% 0.09 268 / 0.55);
 
-    /* Semantic */
-    --selection-bg: oklch(85% 0.08 40);
-    --selection-fg: oklch(20% 0.02 40);
+    /* Second ink: saffron (≈ #F2B233) */
+    --saffron: oklch(80.5% 0.152 80);
+    --saffron-hover: oklch(86% 0.13 86);
+    --on-saffron: oklch(20% 0.024 268);
 
-    /* Type scale (fluid only on display; fixed on UI / body) */
-    --fs-xs: 0.75rem;    /* 12 */
-    --fs-sm: 0.8125rem;  /* 13 — labels */
-    --fs-base: 1.0625rem;/* 17 — body, a touch larger than default */
-    --fs-lg: 1.25rem;    /* 20 */
-    --fs-xl: 1.625rem;   /* 26 — section lead-in */
-    --fs-2xl: clamp(2rem, 2.4vw + 1rem, 3rem);
-    --fs-3xl: clamp(3rem, 5vw + 1rem, 5.5rem);
-    --fs-4xl: clamp(3.75rem, 8vw + 1rem, 8.5rem);
+    /* Type scale: fixed rem for text, fluid only for display */
+    --fs-xs: 0.75rem;
+    --fs-sm: 0.8125rem;
+    --fs-base: 1.0625rem;
+    --fs-lg: 1.25rem;
+    --fs-xl: 1.5rem;
+    --fs-2xl: clamp(1.75rem, 1.6vw + 1rem, 2.5rem);
+    --fs-3xl: clamp(2.25rem, 3vw + 1rem, 3.75rem);
+    --fs-4xl: clamp(3rem, 6vw + 1rem, 6rem);
 
-    /* 4pt spacing (semantic) */
-    --space-1: 0.25rem;
-    --space-2: 0.5rem;
-    --space-3: 0.75rem;
-    --space-4: 1rem;
-    --space-6: 1.5rem;
-    --space-8: 2rem;
-    --space-12: 3rem;
-    --space-16: 4rem;
-    --space-24: 6rem;
-    --space-32: 8rem;
+    /* Hero unit: width-led, but height-capped on short wide screens */
+    --u: 1vw;
+
+    /* Layout */
+    --header-h: 4rem;
+    --page-pad-x: clamp(1rem, 3.35vw, 3rem);
+    --gutter: clamp(1rem, 1.7vw, 1.5rem);
 
     /* Motion */
     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
@@ -66,234 +68,518 @@
     --dur-fast: 120ms;
     --dur-base: 220ms;
     --dur-slow: 480ms;
+  }
 
-    /* Layout */
-    --max-measure: 62ch;
-    --max-page: 78rem;
-    --page-pad-x: clamp(1.25rem, 3vw, 2.5rem);
+  @media (min-width: 768px) {
+    :root {
+      --u: min(1vw, 1.6vh);
+    }
   }
 
   .dark {
     color-scheme: dark;
 
-    --bg: oklch(16% 0.009 40);
-    --bg-raised: oklch(20% 0.010 40);
-    --ink: oklch(96% 0.006 40);
-    --ink-2: oklch(82% 0.010 40);
-    --ink-3: oklch(68% 0.012 40);
-    --muted: oklch(54% 0.012 40);
-    --rule: oklch(30% 0.012 40);
-    --rule-strong: oklch(42% 0.014 40);
+    --bg: oklch(16.5% 0.036 268);
+    --bg-raised: oklch(20.5% 0.046 268);
+    --ink: oklch(95.5% 0.006 100);
+    --ink-2: oklch(84% 0.03 268);
+    --ink-3: oklch(73% 0.04 268);
+    --rule: oklch(31% 0.05 268);
+    --rule-strong: oklch(88% 0.012 268);
+    --lapis-text: oklch(77% 0.1 268);
 
-    --accent: oklch(72% 0.13 40);
-    --accent-ink: oklch(80% 0.11 40);
-    --accent-soft: oklch(28% 0.05 40);
+    --field: oklch(29.5% 0.125 268);
+    --field-deep: oklch(24% 0.1 268);
+    --field-ink: oklch(96% 0.006 100);
+    --field-ink-2: oklch(84% 0.045 268);
+    --field-rule: oklch(96% 0.006 100 / 0.26);
+    --screen-edge: oklch(8% 0.04 268 / 0.7);
+    --screen-shadow: oklch(6% 0.05 268 / 0.7);
 
-    --selection-bg: oklch(40% 0.10 40);
-    --selection-fg: oklch(97% 0.008 40);
-  }
-
-  * {
-    border-color: var(--rule);
+    --saffron: oklch(80.5% 0.152 80);
+    --saffron-hover: oklch(86% 0.13 86);
   }
 
   html {
     scroll-behavior: smooth;
-    font-feature-settings: "ss01", "ss02", "cv11", "kern";
+    scroll-padding-top: var(--header-h);
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     background: var(--bg);
     color: var(--ink);
+    /* Print rules stay hairlines in both themes */
+    border-color: var(--rule);
+  }
+
+  * {
+    border-color: var(--rule);
   }
 
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-text);
     font-size: var(--fs-base);
-    line-height: 1.55;
-    font-weight: 400;
+    font-weight: 360;
+    line-height: 1.6;
+    caret-color: var(--lapis-text);
+    overflow-x: clip;
     transition: background-color var(--dur-base) var(--ease-out-quart),
-                color var(--dur-base) var(--ease-out-quart);
+      color var(--dur-base) var(--ease-out-quart);
   }
 
-  .dark body {
-    /* light text on dark reads as lighter; bump line-height slightly */
-    line-height: 1.6;
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  :lang(ar) {
+    letter-spacing: 0;
   }
 
   ::selection {
-    background: var(--selection-bg);
-    color: var(--selection-fg);
+    background: var(--saffron);
+    color: var(--on-saffron);
   }
 
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--lapis-text);
     outline-offset: 3px;
-    border-radius: 2px;
   }
 
-  h1, h2, h3, h4, h5 {
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    color: var(--ink);
+  /* On the lapis field the saffron ink carries focus */
+  .field :focus-visible,
+  .field:focus-visible {
+    outline-color: var(--saffron);
   }
 
-  /* True tight leading on display text */
-  .display {
-    font-weight: 500;
-    letter-spacing: -0.035em;
-    line-height: 0.92;
-    font-variation-settings: "wdth" 90;
-  }
-
-  .display-sm {
-    font-weight: 500;
-    letter-spacing: -0.025em;
-    line-height: 1.02;
-  }
-
-  /* Labels (JetBrains Mono, small caps feel) */
-  .label {
-    font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: var(--fs-xs);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: var(--ink-3);
-  }
-
-  .label-accent {
-    font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: var(--fs-xs);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: var(--accent);
-  }
-
-  /* Tabular numerals for dates / metadata */
-  .tabular {
-    font-variant-numeric: tabular-nums;
-    font-feature-settings: "tnum";
+  a {
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 1px;
   }
 }
 
-@layer utilities {
-  .measure {
-    max-width: var(--max-measure);
-  }
+@layer components {
   .page {
-    max-width: var(--max-page);
+    width: 100%;
+    max-width: 90rem;
     padding-left: var(--page-pad-x);
     padding-right: var(--page-pad-x);
     margin-left: auto;
     margin-right: auto;
   }
-  .rule-top {
-    border-top: 1px solid var(--rule);
-  }
-  .rule-bottom {
-    border-bottom: 1px solid var(--rule);
-  }
-  .bg-surface { background: var(--bg); }
-  .bg-raised  { background: var(--bg-raised); }
-  .text-ink   { color: var(--ink); }
-  .text-ink-2 { color: var(--ink-2); }
-  .text-ink-3 { color: var(--ink-3); }
-  .text-muted { color: var(--muted); }
-  .text-accent { color: var(--accent); }
-  .text-accent-ink { color: var(--accent-ink); }
 
-  /* Link underline that slides in on hover */
-  .link-reveal {
-    position: relative;
-    color: var(--ink);
-    text-decoration: none;
-    background-image: linear-gradient(currentColor, currentColor);
-    background-size: 0% 1px;
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    transition: background-size var(--dur-base) var(--ease-out-quart),
-                color var(--dur-base) var(--ease-out-quart);
-  }
-  .link-reveal:hover,
-  .link-reveal:focus-visible {
-    background-size: 100% 1px;
+  /* The lapis spot-ink surface */
+  .field {
+    background: var(--field);
+    color: var(--field-ink);
   }
 
-  /* Link with persistent underline that disappears on hover */
-  .link-underline {
-    color: var(--ink);
+  .measure {
+    max-width: 66ch;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+
+  /* Small set labels: text face, tabular figures, never a mono costume */
+  .label {
+    font-family: var(--font-text);
+    font-size: var(--fs-sm);
+    font-weight: 450;
+    letter-spacing: 0.01em;
+    line-height: 1.45;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Underlined text link that trades its rule for the ink colour on hover */
+  .link {
     text-decoration: underline;
-    text-decoration-color: var(--rule-strong);
-    text-underline-offset: 0.18em;
+    text-decoration-color: currentColor;
     text-decoration-thickness: 1px;
-    transition: text-decoration-color var(--dur-base) var(--ease-out-quart);
+    text-underline-offset: 0.22em;
+    transition: text-decoration-color var(--dur-base) var(--ease-out-quart),
+      color var(--dur-base) var(--ease-out-quart);
   }
-  .link-underline:hover,
-  .link-underline:focus-visible {
-    text-decoration-color: var(--accent);
-    color: var(--accent);
-  }
-
-  /* Entrance animation — used once on initial load / on view */
-  .reveal {
-    opacity: 0;
-    transform: translateY(8px);
-    animation: reveal-in var(--dur-slow) var(--ease-out-quart) forwards;
-  }
-  .reveal-delay-1 { animation-delay: 60ms; }
-  .reveal-delay-2 { animation-delay: 120ms; }
-  .reveal-delay-3 { animation-delay: 180ms; }
-  .reveal-delay-4 { animation-delay: 240ms; }
-  .reveal-delay-5 { animation-delay: 300ms; }
-
-  @keyframes reveal-in {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0);   }
+  .link:hover {
+    text-decoration-color: transparent;
   }
 
-  /* Scroll-triggered: .js-ready on <html> pre-hides [data-reveal] elements;
-     IntersectionObserver adds .in-view to each when it enters the viewport. */
-  .js-ready [data-reveal] {
-    opacity: 0;
-    transform: translateY(8px);
+  /* Saffron action: the one filled control in the system */
+  .btn-saffron {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 3rem;
+    padding: 0.75rem 1.375rem;
+    background: var(--saffron);
+    color: var(--on-saffron);
+    font-family: var(--font-text);
+    font-weight: 500;
+    font-size: var(--fs-base);
+    line-height: 1.2;
+    transition: background-color var(--dur-base) var(--ease-out-quart);
   }
-  .js-ready [data-reveal].in-view {
-    animation: reveal-in var(--dur-slow) var(--ease-out-quart) forwards;
+  .btn-saffron:hover {
+    background: var(--saffron-hover);
+  }
+  .btn-saffron svg {
+    transition: transform var(--dur-base) var(--ease-out-quart);
+  }
+  .btn-saffron:hover svg {
+    transform: translateX(3px);
+  }
+  .btn-saffron:disabled {
+    cursor: progress;
+    background: var(--field-ink-2);
   }
 
-  .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 9999px;
-    background: var(--accent);
-    display: inline-block;
-    vertical-align: middle;
+  /* A phone screen standing on the baseline */
+  .screen {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 14% / 6.45%;
+    box-shadow: 0 0 0 1px var(--screen-edge),
+      0 22px 32px -18px var(--screen-shadow);
+  }
+  /* iPhone 8 Plus era captures: square-cornered screen */
+  .screen[data-device="plus"] {
+    border-radius: 2px;
   }
 }
 
-/* Quiet, intentional scrollbar */
+/* ── Hero ─────────────────────────────────────────────────── */
+
+.hero {
+  --plate-h: 3.5rem;
+  padding-top: calc(var(--header-h) + clamp(1.25rem, 2.2 * var(--u), 2.25rem));
+  padding-bottom: 1rem;
+  overflow-x: clip;
+}
+
+/* Below lg the shelf comes straight after the two names, so the apps lead
+   the first screen on phones and tablets; the copy follows the shelf. */
+.hero-grid {
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  grid-template-areas:
+    "name name name name name name name name name name name name"
+    "ar ar ar ar ar ar ar ar ar ar ar ar"
+    "claim claim claim claim claim claim claim claim claim claim claim claim"
+    "shelf shelf shelf shelf shelf shelf shelf shelf shelf shelf shelf shelf"
+    "copy copy copy copy copy copy copy copy copy copy copy copy";
+}
+
+.hero-name {
+  grid-area: name;
+  font-size: clamp(2.75rem, 14.6 * var(--u), 9.75rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin-left: -0.045em;
+}
+
+.hero-ar {
+  grid-area: ar;
+  justify-self: end;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 12.4 * var(--u), 8.5rem);
+  line-height: 1.12;
+  color: var(--saffron);
+}
+
+.hero-claim {
+  grid-area: claim;
+  font-size: clamp(1.75rem, 3.3 * var(--u), 3rem);
+  line-height: 1;
+  margin-top: 0.75rem;
+  text-wrap: balance;
+}
+
+/* Wide enough for the claim to clear the first screen on one line */
+@media (min-width: 1280px) {
+  .hero-claim {
+    white-space: nowrap;
+  }
+}
+
+.hero-copy {
+  grid-area: copy;
+  margin-top: 2rem;
+}
+
+.hero-shelf {
+  grid-area: shelf;
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .hero-grid {
+    grid-template-areas:
+      "name name name name name name name name name name name name"
+      "claim claim claim claim claim claim ar ar ar ar ar ar"
+      "shelf shelf shelf shelf shelf shelf shelf shelf shelf shelf shelf shelf"
+      "copy copy copy copy copy copy copy copy copy copy copy copy";
+  }
+  .hero-name {
+    font-size: clamp(3.5rem, 10.6 * var(--u), 9.75rem);
+  }
+  .hero-ar {
+    align-self: last baseline;
+    font-size: clamp(3rem, 9.2 * var(--u), 8.5rem);
+    margin-top: calc(-0.08 * 9.2 * var(--u));
+  }
+  .hero-claim {
+    align-self: last baseline;
+    margin-top: 0;
+  }
+}
+
+/* At lg the claim travels with the lede in the left column, both anchored
+   to the shared baseline, while the screens span the same two rows. */
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+      "name name name name name name name name name name name name"
+      ". . . . . ar ar ar ar ar ar ar"
+      "claim claim claim claim shelf shelf shelf shelf shelf shelf shelf shelf"
+      "copy copy copy copy shelf shelf shelf shelf shelf shelf shelf shelf";
+  }
+  .hero-claim {
+    align-self: end;
+    margin-bottom: 1.5rem;
+    /* Sized against its own four columns so it never crowds the screens */
+    font-size: clamp(1.75rem, min(3.3 * var(--u), 3.2cqw), 3rem);
+  }
+  .hero-copy {
+    align-self: end;
+    margin-top: 0;
+  }
+  .hero-shelf {
+    align-self: end;
+    margin-top: max(1.75rem, calc(1.6 * var(--u) + 0.6rem));
+  }
+}
+
+/* The copy column ends on the shared baseline; its footnote sits in the
+   plate band below it, level with the label plates. */
+.hero-footnote {
+  height: var(--plate-h);
+  margin-top: 1.5rem;
+  padding-top: 0.625rem;
+}
+
+/* The shelf: every screen at true relative scale on one baseline.
+   --pt is pixels per iOS point; 1702 is the four screens' summed width. */
+.shelf {
+  container-type: inline-size;
+}
+.shelf-track {
+  --gap: clamp(0.75rem, 1.7cqw, 1.5rem);
+  --pt-w: calc((100cqw - 3 * var(--gap)) / 1702);
+  --pt-h: calc(max(13rem, 100vh - 9.85rem - var(--plate-h) - 19.8 * var(--u)) / 932);
+  --pt: min(var(--pt-w), var(--pt-h));
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: var(--gap);
+}
+@media (min-width: 1024px) {
+  .shelf-track {
+    justify-content: flex-end;
+  }
+}
+/* Full-bleed baseline at the foot of the screens, above the plates */
+.shelf-track::after {
+  content: "";
+  position: absolute;
+  left: -100vw;
+  right: -100vw;
+  bottom: var(--plate-h);
+  height: 1px;
+  background: var(--field-ink);
+  transform-origin: center;
+}
+.shelf-item {
+  container-type: inline-size;
+  flex: 0 0 auto;
+  width: calc(var(--w) * var(--pt));
+}
+/* Very narrow screens (short, wide laptops floor the phones near 100px):
+   the redundant platform field yields first, then long names wrap inside
+   a taller plate band rather than running into the next plate. */
+@container (max-width: 124px) {
+  .shelf-plate-platform {
+    display: none;
+  }
+}
+@media (min-width: 768px) and (max-height: 700px) {
+  .hero {
+    --plate-h: 4.5rem;
+  }
+}
+/* Isolate: only the screens fade; plate text keeps full contrast and just
+   steps down to the secondary ink. */
+.shelf-dim {
+  display: block;
+  transition: opacity var(--dur-base) var(--ease-out-quart);
+}
+.shelf-track[data-engaged="true"] .shelf-item:not([data-active="true"]) .shelf-dim {
+  opacity: 0.42;
+}
+.shelf-track[data-engaged="true"] .shelf-item:not([data-active="true"]) .shelf-plate-name {
+  color: var(--field-ink-2);
+}
+/* The pointed or focused plate takes the saffron ink */
+.shelf-item[data-active="true"] .shelf-plate-name {
+  color: var(--saffron);
+}
+/* Fixed height, single-line rows: a plate can never lift its screen off the
+   shared baseline. Under user text spacing the rows extend sideways, not up. */
+.shelf-plate {
+  height: var(--plate-h);
+  padding-top: 0.625rem;
+}
+
+@media (max-width: 767.98px) {
+  .shelf {
+    margin-left: calc(-1 * var(--page-pad-x));
+    margin-right: calc(-1 * var(--page-pad-x));
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--page-pad-x);
+    scrollbar-width: none;
+  }
+  .shelf::-webkit-scrollbar {
+    display: none;
+  }
+  .shelf-track {
+    /* About 2.4 phones per screen, so the next one always peeks in; capped by
+       height (landscape phones) and by the screenshots' resolution */
+    --pt: max(
+      0.2px,
+      min(
+        calc((100vw - 2 * var(--page-pad-x)) / 1010),
+        calc((100svh - var(--header-h) - 16rem) / 932),
+        0.42px
+      )
+    );
+    width: max-content;
+    justify-content: flex-start;
+    padding-left: var(--page-pad-x);
+    padding-right: var(--page-pad-x);
+  }
+  .shelf-track::after {
+    left: 0;
+    right: 0;
+  }
+  .shelf-item {
+    scroll-snap-align: start;
+  }
+}
+
+/* One orchestrated load: the shared baseline draws out from the centre,
+   then the screens settle onto it. Content is visible without JS. */
+.js-ready .hero-name,
+.js-ready .hero-ar,
+.js-ready .hero-claim,
+.js-ready .hero-copy {
+  animation: rise-in 720ms var(--ease-out-expo) both;
+}
+.js-ready .hero-ar {
+  animation-name: slide-in-rtl;
+  animation-delay: 90ms;
+}
+.js-ready .hero-claim {
+  animation-delay: 160ms;
+}
+.js-ready .hero-copy {
+  animation-delay: 220ms;
+}
+.js-ready .shelf-track::after {
+  animation: draw-from-centre 900ms var(--ease-out-expo) 180ms both;
+}
+.js-ready .shelf-screen {
+  animation: settle 900ms var(--ease-out-expo) both;
+  animation-delay: calc(380ms + var(--i) * 90ms);
+}
+.js-ready .shelf-plate {
+  animation: fade-in 600ms var(--ease-out-quart) both;
+  animation-delay: calc(640ms + var(--i) * 90ms);
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes slide-in-rtl {
+  from { opacity: 0; transform: translateX(18px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes draw-from-centre {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes settle {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Forced colours ───────────────────────────────────────── */
+
+@media (forced-colors: active) {
+  [aria-current="location"] {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.35em;
+  }
+}
+
+/* ── Browser surfaces ─────────────────────────────────────── */
+
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--rule-strong);
-  border-radius: 9999px;
+  background: var(--field);
   border: 3px solid var(--bg);
+  border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--muted);
+  background: var(--lapis-text);
+}
+html {
+  scrollbar-color: var(--field) var(--bg);
 }
 
-/* Reduced motion: collapse everything */
+/* ── Reduced motion ───────────────────────────────────────── */
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -302,12 +588,8 @@
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
-  }
-  .reveal,
-  .js-ready [data-reveal] {
-    opacity: 1;
-    transform: none;
   }
 }

@@ -33,3 +33,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# impeccable: review captures and decision mocks are local working files
+/.impeccable/review/
+/.impeccable/mocks/
