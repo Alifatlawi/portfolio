@@ -39,7 +39,16 @@ export default function Experience() {
                   {String(arr.length - i).padStart(2, "0")}
                 </span>
                 <span className="mx-2 text-rule-strong">/</span>
-                <span>{item.date}</span>
+                {/* A range may wrap after its dash, never inside a date */}
+                {item.date.split(" – ").map((part, j, parts) => (
+                  <React.Fragment key={part}>
+                    <span className="whitespace-nowrap">
+                      {part}
+                      {j < parts.length - 1 ? " –" : ""}
+                    </span>
+                    {j < parts.length - 1 ? " " : null}
+                  </React.Fragment>
+                ))}
               </div>
 
               <div className="col-span-12 md:col-span-4">

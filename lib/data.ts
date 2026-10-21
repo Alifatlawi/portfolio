@@ -7,24 +7,38 @@ export const links = [
   { name: "Contact", hash: "#contact" },
 ] as const;
 
+// From Ali's CV (October 2026). Listed oldest first; the Experience section
+// shows them newest first. `location` carries the organisation and city.
 export const experiencesData = [
   {
-    title: "Atilim University",
-    location: "Ankara, TR",
-    description: "Pursuing a degree in Software Engineering, focusing on advanced algorithms, system design, and modern programming paradigms. Active participant in coding competitions and collaborative projects, developing strong problem-solving and teamwork skills in a fast-paced academic environment.",
-    date: "2021 - present",
+    title: "Bachelor of Software Engineering",
+    location: "Atılım University · Ankara",
+    description: "Graduated in August 2026. Won 1st place in the university's mPAD Projects Support Program (May 2025) for Atılım Schedule and presented it at Atılım Research Days (ATAG 2025). Graduation project: an AI legal assistant for Turkish law, built on a RAG pipeline over a legal-text vector database with mobile and web clients.",
+    date: "2021 – Aug 2026",
   },
   {
-    title: "Mobile App Developer Internship",
-    location: "Ankara, TR",
-    description: "Intensive internship focused on Flutter mobile app development. Collaborated with senior developers to build cross-platform applications, implemented responsive UI designs, and optimized app performance. Gained hands-on experience with state management, API integration, and mobile development best practices.",
-    date: "2023",
+    title: "Mobile App Developer (Internship)",
+    location: "Biligoba Teknoloji · Ankara",
+    description: "Built cross-platform Flutter applications with senior developers, implementing responsive UI, API integrations and state management.",
+    date: "Feb 2023",
   },
   {
     title: "Software Engineer",
-    location: "Ankara, TR",
-    description: "Full-stack software engineer developing scalable applications across iOS, web, and backend platforms. Architect and implement clean, maintainable code following SOLID principles. Lead technical discussions and mentor junior developers while delivering enterprise-level software solutions.",
-    date: "2023 - present",
+    location: "Biligoba Teknoloji · Ankara",
+    description: "Developed and maintained full-stack applications across iOS (Swift/SwiftUI), backend (NestJS, Go, FastAPI) and web (Next.js/React) for internal products and company clients. Delivered two confidential mobile applications for Turkish government agencies, including the Turkish Gendarmerie (Jandarma). Led technical discussions and mentored junior developers, applying SOLID and clean-architecture practices.",
+    date: "Mar 2023 – Jul 2026",
+  },
+  {
+    title: "Freelance Software Engineer",
+    location: "Self-employed · Remote / Ankara",
+    description: "Design and deliver full-stack platforms end to end, from requirements and API and database design to web, mobile and deployment, for clients in ad-tech, e-learning, fintech, healthcare, government and retail. Built Target Advertising's outdoor-advertising platform (Iraq) and redeployed it for AIM Media (Lebanon), an application-workflow system for the Libya Ministry of Economy, and offline-first desktop software (Saydalia, Mizan) used by 15+ pharmacies and businesses across Iraq.",
+    date: "2024 – present",
+  },
+  {
+    title: "Mobile App Developer",
+    location: "TÜBİTAK project, OSTİM Teknik Üniversitesi · Ankara",
+    description: "Building the mobile control app for a TÜBİTAK-funded electric micro-vehicle project, in partnership with OSTİM Technical University.",
+    date: "Ongoing",
   },
 ] as const;
 
