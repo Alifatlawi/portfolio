@@ -177,7 +177,7 @@ function CompactCard({ project }: { project: Project }) {
           <span className="text-ink-3">{project.status}</span>
         </div>
         {project.url && project.linkLabel ? (
-          <span className="link-underline label tabular text-ink-2">
+          <span className="link-underline label tabular text-ink-2 group-hover:text-accent group-hover:decoration-accent">
             {project.linkLabel}{" "}
             <span aria-hidden="true">{isExternal(project.url) ? "↗" : "→"}</span>
           </span>
@@ -193,7 +193,7 @@ function CompactCard({ project }: { project: Project }) {
         {...(isExternal(project.url)
           ? { target: "_blank", rel: "noopener noreferrer" }
           : {})}
-        className="group block rounded-sm ring-1 ring-rule bg-raised hover:ring-rule-strong transition-[box-shadow,ring-color] duration-base"
+        className="group block rounded-sm ring-1 ring-rule bg-raised hover:ring-rule-strong hover:bg-bg focus-visible:ring-accent transition-[box-shadow,background-color] duration-base ease-out-quart"
         aria-label={`${project.title} — ${project.linkLabel}`}
       >
         {content}

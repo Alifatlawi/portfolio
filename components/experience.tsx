@@ -43,7 +43,7 @@ export default function Experience() {
               </div>
 
               <div className="col-span-12 md:col-span-4">
-                <h3 className="text-xl md:text-2xl tracking-tight text-ink mb-1">
+                <h3 className="text-xl md:text-[1.75rem] leading-tight [text-wrap:balance] tracking-tight text-ink mb-1">
                   {item.title}
                 </h3>
                 <p className="label tabular text-ink-3">{item.location}</p>

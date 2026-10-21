@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { links } from "@/lib/data";
+import ThemeSwitch from "./theme-switch";
 import { useActiveSectionContext } from "@/context/active-section-context";
 
 export default function Header() {
@@ -51,54 +52,58 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex items-center gap-1 label tabular">
-            {links.map((link, i) => {
-              const active = activeSection === link.name;
-              return (
-                <li key={link.hash}>
-                  <Link
-                    href={link.hash}
-                    onClick={() => {
-                      setActiveSection(link.name);
-                      setTimeOfLastClick(Date.now());
-                    }}
-                    aria-current={active ? "true" : undefined}
-                    className={clsx(
-                      "group relative inline-flex items-center gap-2 px-3 py-2 transition-colors duration-fast",
-                      active
-                        ? "text-ink"
-                        : "text-ink-3 hover:text-ink"
-                    )}
-                  >
-                    <span className="opacity-60 group-hover:opacity-100 transition-opacity">
-                      {String(i).padStart(2, "0")}
-                    </span>
-                    <span>{link.name}</span>
-                    {active ? (
-                      <span
-                        aria-hidden
-                        className="absolute -bottom-px left-3 right-3 h-px bg-accent"
-                      />
-                    ) : null}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+        <div className="flex items-center gap-3 md:gap-4">
+          {/* Desktop nav */}
+          <nav aria-label="Primary" className="hidden md:block">
+            <ul className="flex items-center gap-1 label tabular">
+              {links.map((link, i) => {
+                const active = activeSection === link.name;
+                return (
+                  <li key={link.hash}>
+                    <Link
+                      href={link.hash}
+                      onClick={() => {
+                        setActiveSection(link.name);
+                        setTimeOfLastClick(Date.now());
+                      }}
+                      aria-current={active ? "true" : undefined}
+                      className={clsx(
+                        "group relative inline-flex items-center gap-2 px-3 py-2 transition-colors duration-fast",
+                        active
+                          ? "text-ink"
+                          : "text-ink-3 hover:text-ink"
+                      )}
+                    >
+                      <span className="opacity-60 group-hover:opacity-100 transition-opacity">
+                        {String(i).padStart(2, "0")}
+                      </span>
+                      <span>{link.name}</span>
+                      {active ? (
+                        <span
+                          aria-hidden
+                          className="absolute -bottom-px left-3 right-3 h-px bg-accent"
+                        />
+                      ) : null}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
 
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          onClick={() => setMobileOpen((v) => !v)}
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-nav"
-          className="md:hidden label tabular text-ink-2 hover:text-ink transition-colors"
-        >
-          {mobileOpen ? "Close" : "Menu"}
-        </button>
+          <ThemeSwitch />
+
+          {/* Mobile toggle */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
+            className="md:hidden label tabular text-ink-2 hover:text-ink transition-colors"
+          >
+            {mobileOpen ? "Close" : "Menu"}
+          </button>
+        </div>
       </div>
 
       {/* Mobile sheet */}

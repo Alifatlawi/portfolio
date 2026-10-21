@@ -16,7 +16,7 @@ export default function Intro() {
       ref={ref}
       id="home"
       aria-labelledby="intro-heading"
-      className="page pt-32 md:pt-40 pb-20 md:pb-28 scroll-mt-24"
+      className="page pt-28 md:pt-32 pb-20 md:pb-28 scroll-mt-24"
     >
       <div className="grid grid-cols-12 gap-x-6 gap-y-10">
         {/* Eyebrow */}
@@ -76,13 +76,13 @@ export default function Intro() {
 
         {/* Lede */}
         <div className="col-span-12 md:col-span-9 md:col-start-4">
-          <p className="measure text-xl md:text-2xl leading-snug text-ink-2 reveal reveal-delay-2">
+          <p className="measure text-lg md:text-xl lg:text-[1.75rem] leading-snug text-ink-2 reveal reveal-delay-2">
             I design and build across iOS, web, and the infrastructure
             underneath. Four apps are live on the App Store; more are in the
             quiet part of the workshop.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 reveal reveal-delay-4">
+          <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4 reveal reveal-delay-4">
             <Link
               href="#contact"
               onClick={() => {
