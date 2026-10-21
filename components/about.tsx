@@ -42,10 +42,12 @@ export default function About() {
               occasionally a web front-end when a project asks for one.
             </p>
             <p>
-              Four of those are live on the App Store: a schedule manager
-              adopted by 7,000 Atılım students, a learning platform for
-              Libyan students, a mental-health companion in Arabic, and a
-              sketching tool that turns any iPhone into a tracing tool.
+              Six of those are live on the App Store: a schedule manager
+              adopted by more than 7,000 Atılım students, a learning platform
+              for Libyan students, a mental-health companion in Arabic, a
+              practice manager for Iraqi lawyers, a handwriting-first
+              notebook, and a sketching tool that turns any iPhone into a
+              tracing tool.
               Each one taught me the same lesson — the interesting engineering
               happens <em>after</em> the demo works.
             </p>

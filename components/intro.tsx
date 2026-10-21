@@ -79,7 +79,7 @@ export default function Intro() {
         <div className="col-span-12 md:col-span-9 md:col-start-4 lg:col-span-6">
           <p className="measure text-lg md:text-xl lg:text-[1.75rem] leading-snug text-ink-2 reveal reveal-delay-2">
             I design and build across iOS, web, and the infrastructure
-            underneath. Four apps are live on the App Store; more are in the
+            underneath. Six apps are live on the App Store; more are in the
             quiet part of the workshop.
           </p>
 
@@ -125,7 +125,14 @@ export default function Intro() {
               >
                 LinkedIn <span aria-hidden="true">↗</span>
               </a>
-              {/* CV link hidden until public/CV.pdf has real content (it is 0 bytes) */}
+              <a
+                href="/CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-reveal py-2 -my-2 inline-flex items-center"
+              >
+                CV <span aria-hidden="true">↗</span>
+              </a>
             </div>
           </div>
         </div>

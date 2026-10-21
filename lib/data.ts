@@ -70,11 +70,11 @@ export const projectsData = [
   {
     title: "Atilim Schedule",
     description:
-      "Schedule manager for Atılım University students. Add courses, view a weekly timetable, and use auto-generation to build a conflict-free schedule. Adopted by ~7,000 students. No data collected.",
+      "Schedule manager for Atılım University students. Add courses, view a weekly timetable, and use auto-generation to build a conflict-free schedule. Adopted by 7,000+ students. No data collected.",
     tags: ["Swift", "SwiftUI", "iOS"],
     url: "https://apps.apple.com/tr/app/atilim-schedule-app/id6730125883",
     category: "iOS App",
-    status: "Live · ~7,000 users",
+    status: "Live · 7,000+ users",
     year: "2024",
     group: "iOS",
     linkLabel: "App Store",
