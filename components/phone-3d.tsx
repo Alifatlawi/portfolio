@@ -5,13 +5,19 @@ import Image from "next/image";
 import clsx from "clsx";
 import { projectsData } from "@/lib/data";
 
-// Real App Store screens of the four live apps, cropped to the raw screen.
+// Real App Store screens of the live apps, cropped to the raw screen. Each
+// caption links to the app's App Store page.
 const SCREENS = [
   { title: "Atilim Schedule", label: "Atilim Schedule", src: "/hero/atilim-schedule-4.jpg", w: 640, h: 1395, alt: "Atilim Schedule: the exams countdown screen" },
   { title: "TAD iOS", label: "TAD", src: "/hero/tad-ios-1.jpg", w: 640, h: 1388, alt: "TAD: the course home screen" },
+  { title: "Murafa’a", label: "Murafa’a", src: "/hero/murafa.jpg", w: 640, h: 1387, alt: "Murafa’a: today's court sessions, in Arabic", url: "https://apps.apple.com/tr/app/%D9%85%D8%B1%D8%A7%D9%81%D8%B9%D8%A9-%D9%85%D8%B3%D8%A7%D8%B9%D8%AF-%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A/id6821060248" },
   { title: "Khatwa", label: "Khatwa", src: "/hero/khatwa-1.jpg", w: 640, h: 1391, alt: "Khatwa: the daily mood home screen, in Arabic" },
+  { title: "Warqa", label: "Warqa", src: "/hero/warqa.jpg", w: 640, h: 1393, alt: "Warqa: handwritten Cornell notes with the pen tools open" },
   { title: "SosoSketch", label: "SosoSketch", src: "/hero/sososketch-1.jpg", w: 640, h: 1136, alt: "SosoSketch: tracing a drawing through the camera" },
-].map((s) => ({ ...s, url: projectsData.find((p) => p.title === s.title)?.url ?? null }));
+].map((s) => ({
+  ...s,
+  url: ("url" in s ? s.url : null) ?? projectsData.find((p) => p.title === s.title)?.url ?? null,
+}));
 
 // Stacked slices behind the face give the body a solid metal edge in 3D.
 const LAYERS = 18;
@@ -111,7 +117,7 @@ export default function Phone3D() {
   return (
     <figure
       className="phone3d"
-      aria-label="Screens from four of Ali's App Store apps"
+      aria-label={`Screens from ${SCREENS.length} of Ali's App Store apps`}
       onMouseEnter={() => setHolding(true)}
       onMouseLeave={() => setHolding(false)}
       onFocus={() => setHolding(true)}
